@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+
+
+
+.login-page {
+  background-color: #9DE0AD;
+}
+
+.login-button {
+  margin: auto auto;
+  border-radius: 5px;
+  display: block;
+}
