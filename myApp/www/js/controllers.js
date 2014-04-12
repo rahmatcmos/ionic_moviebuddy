@@ -14,5 +14,15 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope) {
 })
 
+.controller('MoviesCtrl', function($scope) {
+})
+
+.controller('OutingsCtrl', function($scope) {
+	
+})
+
+.controller('ProfileCtrl', function($scope) {
+})
+
 .controller('LoginCtrl', function($scope) {
 });

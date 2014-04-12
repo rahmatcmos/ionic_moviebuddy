@@ -29,9 +29,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
     })
-
     .state('dash', {
       url: '/dash',
+      abstract: true,
       templateUrl: 'templates/dash.html',
       resolve: {
         isLoggedIn: function(authentication) {
@@ -39,6 +39,50 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       controller: 'DashCtrl'
+    })
+    .state('dash.outings', {
+      url: "/outings",
+      views: {
+        'outings': {
+          templateUrl: "templates/outings.html",
+          controller: 'OutingsCtrl'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication){
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.movies', {
+      url: '/movies',
+      views: {
+        'movies' : {
+          templateUrl: "templates/movies.html",
+          controller: 'MoviesCtrl'
+        }
+      },
+      templateUrl: 'templates/movies.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.profile', {
+      url: '/profile',
+      views: {
+        'profile' : {
+          templateUrl: "templates/profile.html",
+          controller: 'ProfileCtrl'
+        }
+      },
+      templateUrl: 'templates/profile.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
