@@ -1,7 +1,7 @@
 <ion-view title="Movies">
   <ion-content class="has-header padding">
-    <ion-list>
-      <ion-item ng-repeat="movie in allMovies" item="movie" item-type="a" can-swipe="true" option-buttons="itemButtons">
+    <!-- <ion-list>
+      <ion-item ng-repeat="movie in allMovies" item="movie" can-swipe="true" option-buttons="itemButtons">
       <img src="{{movie.posters.profile}}"></img>
       <br>
       <b>TITLE:</b>
@@ -19,8 +19,11 @@
       <b>SYNOPSIS:</b>
       {{movie.synopsis}}
       <br>
+      
+      
       </ion-item>
-    </ion-list>
+    </ion-list> -->
+    {{itemButtons}}
     <!-- {{allMovies}} -->
   </ion-content>
 </ion-view>

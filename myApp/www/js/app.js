@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginController'
     })
     .state('dash', {
       url: '/dash',
@@ -38,14 +38,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
           return authentication.auth();
         }
       },
-      controller: 'DashCtrl'
+      controller: 'DashController'
     })
     .state('dash.outings', {
       url: "/outings",
       views: {
         'outings': {
           templateUrl: "templates/outings.html",
-          controller: 'OutingsCtrl'
+          controller: 'OutingsController'
         }
       },
       resolve: {
@@ -59,7 +59,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'movies' : {
           templateUrl: "templates/movies.html",
-          controller: 'MoviesCtrl'
+          controller: 'MoviesController'
         }
       },
       templateUrl: 'templates/movies.html',
@@ -74,7 +74,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'profile' : {
           templateUrl: "templates/profile.html",
-          controller: 'ProfileCtrl'
+          controller: 'ProfileController'
         }
       },
       templateUrl: 'templates/profile.html',
@@ -88,38 +88,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('login');
 
-});
-
-// authentication service, handles login and logout
-app.service('authentication', function($rootScope, $location, $http, $state) {
-  var cookieParser = function(cookie) {
-    var splitCookie = cookie.split(';');
-    for (var i = 0; i < splitCookie.length; i++){
-      var leftSide = splitCookie[i].split('=')[0];
-      var rightSide = splitCookie[i].split('=')[1];
-      if( rightSide === 'undefined') {
-        return JSON.parse(leftSide);
-      }
-    }
-  };
-
-  this.auth = function(){
-    console.log('In authentication');
-    return $http({
-      method: 'GET',
-      url: '/auth/isLoggedIn'
-    })
-    .then(function(response){
-      console.log(response);
-      if (response.data === 'false') {
-        $state.go('login');
-      }
-      if (window.document.cookie !== '') {
-        var userObj = cookieParser(window.document.cookie);
-        $rootScope.user = userObj;
-      }
-    });
-  };
 });
 
 // Load the SDK Asynchronously

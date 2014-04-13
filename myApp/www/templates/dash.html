@@ -1,32 +1,29 @@
-
+<!-- Header Bar -->
 <ion-header-bar align-title="center" class="bar-positive">
-  
+  <!-- Title -->
   <h1 class="title">MovieBuddy</h1>
+  <!-- Logout Button -->
   <div class="buttons">
-    <button class="button" ng-click="doSomething()">Logout</button>
+    <button class="button button-clear" ng-click="doSomething()">Logout</button>
   </div>
 </ion-header-bar>
 
-
+<!-- Tabs -->
 <ion-tabs class="tabs-icon-top">
-
 
   <!-- Dash Tab -->
   <ion-tab title="Outings" icon="ion-android-friends" ui-sref="dash.outings">
-    <ion-nav-view name="outings"></ion-nav-view>
+    <ion-nav-view name="outings" class="slide-left-right-ios7"></ion-nav-view>
   </ion-tab>
-
 
   <!-- Movies Tab -->
   <ion-tab title="Movies" icon="ion-film-marker" ui-sref="dash.movies">
     <ion-nav-view name="movies"></ion-nav-view>
   </ion-tab>
 
-
   <!-- Profile Tab -->
   <ion-tab title="Profile" icon="ion-android-contact" ui-sref="dash.profile">
     <ion-nav-view name="profile"></ion-nav-view>
   </ion-tab>
-
 
 </ion-tabs>
