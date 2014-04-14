@@ -260,7 +260,7 @@ exports.authFacebookCallback = function(req, res, next, passport) {
       // console.log("req.session = ", req.session);
       // console.log("user = ", user);
       res.cookie(JSON.stringify(user));
-      return res.redirect('/#/dash');
+      return res.redirect('http://localhost:8080/#/dash/outings');
     });
 
   })(req, res, next);

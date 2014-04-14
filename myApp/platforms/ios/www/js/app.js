@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,9 +14,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -24,72 +24,78 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // setup an abstract state for the tabs directive
-    // .state('tab', {
-    //   url: "/tab",
-    //   abstract: true,
-    //   templateUrl: "templates/tabs.html"
-    // })
-
-    // // Each tab has its own nav history stack:
-
-    // .state('tab.dash', {
-    //   url: '/dash',
-    //   views: {
-    //     'tab-dash': {
-    //       templateUrl: 'templates/tab-dash.html',
-    //       controller: 'DashCtrl'
-    //     }
-    //   }
-    // })
-
-    // .state('tab.friends', {
-    //   url: '/friends',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/tab-friends.html',
-    //       controller: 'FriendsCtrl'
-    //     }
-    //   }
-    // })
-    // .state('tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl'
-    //     }
-    //   }
-    // })
-
-    // .state('tab.account', {
-    //   url: '/account',
-    //   views: {
-    //     'tab-account': {
-    //       templateUrl: 'templates/tab-account.html',
-    //       controller: 'AccountCtrl'
-    //     }
-    //   }
-    // })
-
-    .state('home', {
-      url: '/home',
-      abstract: true,
-      templateUrl: 'templates/home.html'
-    })
-
-    .state('home.login', {
+    .state('login', {
       url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
+    .state('dash', {
+      url: '/dash',
+      abstract: true,
+      templateUrl: 'templates/dash.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      },
+      controller: 'DashController'
+    })
+    .state('dash.outings', {
+      url: "/outings",
       views: {
-        'login-page' : {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
+        'outings': {
+          templateUrl: "templates/outings.html",
+          controller: 'OutingsController'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication){
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.movies', {
+      url: '/movies',
+      views: {
+        'movies' : {
+          templateUrl: "templates/movies.html",
+          controller: 'MoviesController'
+        }
+      },
+      templateUrl: 'templates/movies.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.profile', {
+      url: '/profile',
+      views: {
+        'profile' : {
+          templateUrl: "templates/profile.html",
+          controller: 'ProfileController'
+        }
+      },
+      templateUrl: 'templates/profile.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
         }
       }
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/login');
+  $urlRouterProvider.otherwise('login');
 
 });
+
+// Load the SDK Asynchronously
+(function(d){
+  var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement('script'); js.id = id; js.async = true;
+  js.src = '//connect.facebook.net/en_US/all.js';
+  ref.parentNode.insertBefore(js, ref);
+}(document));
 

@@ -1,0 +1,29 @@
+<ion-view title="Outings">
+  <ion-content class="has-header padding">
+    <h1>Outings</h1>
+    <ion-list>
+      <ion-item ng-repeat="outing in outings" item="movie">
+      MOVIE TITLE:
+      {{outing.movie}}
+      <br>
+      DATE:
+      {{outing.date}}
+      <br>
+      THEATER:
+      {{outing.theater}}
+      <br>
+      ADDRESS:
+      {{outing.address}}
+      <br>
+      CITY:
+      {{outing.city}}
+      <br>
+      STATE:
+      {{outing.state}}
+      <br>
+      ZIP:
+      {{outing.zip}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

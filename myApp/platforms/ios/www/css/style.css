@@ -10,6 +10,702 @@
   margin: auto auto;
   border-radius: 5px;
   display: block;
-  border: 1px solid red;
-  
+}
+
+.dash-page {
+	background-color: #9DE0AD;
+}
+
+/* Space out content a bit */
+
+/* web fonts */
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('../fonts/Bebas/bebas___-webfont.eot');
+    src: url('../fonts/Bebas/bebas___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Bebas/bebas___-webfont.woff') format('woff'),
+         url('../fonts/Bebas/bebas___-webfont.ttf') format('truetype'),
+         url('../fonts/Bebas/bebas___-webfont.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'glyphicons';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.svg'),
+       url('../fonts/glyphicons-halflings-regular.ttf'),
+       url('../fonts/glyphicons-halflings-regular.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Google Fonts
+font-family: 'Inder', sans-serif;
+font-family: 'Viga', sans-serif;
+font-family: 'Hammersmith One', sans-serif;
+font-family: 'Gentium Book Basic', serif;
+
+  Colors Used
+#00A8C6 - light blueish
+#F38630 - bright orange
+#FA6900 - slightly darker orange
+rgba(37, 244, 154, .75) - mint
+#E0E4CC - off white
+*/
+
+/* Global Reset */
+html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+}
+
+body {
+  font-family: 'Hammersmith One', sans-serif;
+  color: #333;
+  background: #E0E4CC;
+}
+
+.container {
+  min-width: 750px;
+}
+
+.headerDiv {
+  text-align: center;
+  background: url('../images/grey_wash_wall.png');
+  height: 100px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.appHeader {
+  background: url('../images/bearLogo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 120px;
+  border-radius: 50%;
+  margin: auto;
+  background-color: white;
+  display: inline-block;
+}
+
+.logoutButton {
+  position: absolute;
+  display: inline-block;
+  padding: 8px 15px;
+  cursor: pointer;
+  border: 1px solid #00A8C6;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #ffffff;
+  background-color: #00A8C6;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-left: 100px;
+}
+
+.logoutButton:hover {
+  background-color: rgba(37, 244, 154, .75);
+  border-color: rgba(37, 244, 154, .75);
+  color: #ffffff;
+}
+
+.sectionDiv {
+}
+
+.sectionHeader {
+  text-align: center;
+  font-weight: 900;
+  font-size: 2em;
+  letter-spacing: .1em;
+  cursor: pointer;
+}
+
+.sectionContainer {
+  padding: 20px;
+  display: none;
+  background: url('../images/grey_wash_wall.png');
+}
+
+.sectionContainerProfile {
+  color: black;
+  padding: 20px;
+}
+
+/* login fun */
+
+.loginContainer {
+  width: 100%;
+  background: url('../images/bg.jpg');
+}
+
+.loginHeaderDiv {
+  padding-bottom: 15px;
+  background: url('../images/grey_wash_wall.png');
+}
+
+.loginHeader {
+  font-family: 'Bebas';
+  letter-spacing: .05em;
+  color: white;
+  font-size: 5em;
+  text-transform: uppercase;
+  text-align: center;
+  word-spacing: .1em;
+  text-decoration: underline;
+}
+
+.loginHeaderTwo {
+  color: white ;
+  text-align: center; 
+  font-family: 'Bebas';
+  letter-spacing: .05em;
+  word-spacing: .2em;
+  margin-top: 10px;
+}
+
+.logoDiv {
+}
+
+.logo {
+}
+
+.loginDiv {
+  text-align: center;
+  padding: 10px;
+  margin: auto;
+  margin-top: 170px;
+  border-radius: 15px;
+  width: 400px;
+  background: url('../images/grey_wash_wall.png');
+}
+
+.fbLogin {
+  height: 80px;
+  width: 400px;
+  border: 0px;
+  background: url('../images/fblogin.png');
+  background-position: center;
+  cursor: pointer;
+}
+
+.fbLogin:focus {
+  outline: 0;
+}
+
+.loginFooter {
+  height: 150px;
+  background: url('../images/grey_wash_wall.png');
+  bottom: 0;
+  margin: 0 auto;
+}
+
+/* Profile Fun */
+
+.profileSection{
+  height: 200px;
+  min-width: 750px;
+  text-transform: uppercase;
+  font-size: .75em;
+}
+
+.profile {
+  margin-top: 20px;
+  min-width: 700px;
+}
+
+#profilePicDiv {
+  float: left;
+  margin-left: 15px;
+}
+
+#profilePic {
+  height: 150px;
+  width: 140px;
+  border-radius: 20px;
+}
+
+#userDetails {
+  margin-top: 10px;
+  margin-left: 30px;
+  width: 220px;
+  float: left;
+}
+
+#userMovieDetails {
+  margin-top: 10px;
+  margin-left: 30px;
+  display: inline-block;
+  width: 270px;
+}
+
+.userDetail {
+  color: black;
+  border: 0px;
+  width: 270px;
+  line-height: 2.5em;
+  display: block;
+}
+
+.editableUserDetail {
+  color: black;
+  border: 0px;
+}
+
+/* css override of xeditable angular */
+.editable-controls {
+}
+
+.editable-input {
+  border: 0px;
+  border-bottom: 1px solid #333;
+  height: 20px;
+  width: 100px !important;
+  background-color: #E0E4CC;
+  font-family: 'Hammersmith One', sans-serif;
+  text-transform: uppercase;
+}
+
+.editable-input:focus {
+  outline: 0;
+} 
+
+.editable-buttons button {
+  padding: 0px;
+  width: 25px;
+  height: 25px;
+  font-size: 6px;
+  cursor: pointer;
+  border: 0px;
+  border-radius: 4px;
+  color: #FFFFFF;
+  background-color: #00A8C6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.editable-buttons button:nth-child(2) {
+  background-color: #d9534f;
+}
+
+/* friends */
+
+.sectionContainerFriends {
+  padding-left: 0px;
+}
+
+.friendsSection {
+  padding: 0px !important;
+}
+
+.friendsSectionHeader {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #F38630;
+}
+
+.friend {
+  height: 75px;
+  padding: 10px;
+  background-color: lightgray;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.friendsPhoto {
+  height: 70px;
+  border-radius: 20px;
+  float: left;
+}
+
+.friendName {
+  display: inline-block;
+  margin-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 2em;
+}
+
+/* movies */
+
+.moviesSection {
+}
+
+.moviesSectionHeader {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(37, 244, 154, .75);
+}
+
+.filters {
+  text-align: center;
+  min-width: 650px;
+}
+
+.filter {
+  padding: 8px 15px;
+  cursor: pointer;
+  border: 1px solid #00A8C6;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #ffffff;
+  background-color: #00A8C6;
+  text-transform: uppercase;
+}
+
+.filter:hover {
+  background-color: rgba(37, 244, 154, .75);
+  border-color: rgba(37, 244, 154, .75);
+  color: #ffffff;
+}
+
+.filter:focus {
+  outline: 0;
+}
+
+.searchFilter {
+  height: 30px;
+  width: 300px;
+  border: 0px;
+  border-bottom: 3px solid black;
+  padding: 0px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  line-height: 1em;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.searchFilter:focus {
+  outline: 0;
+}
+
+.movie {
+  display: block;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  overflow: ellipsis;
+  color: lightgray;
+}
+
+.movieThumb {
+  height: 100px;
+  float: left;
+}
+
+.infoOne {
+  float: left;
+  width: 200px;
+  height: 180px;
+  margin-left: 25px;
+}
+
+.infoTwo{
+  width: 200px;
+  height: 180px;
+  margin-left: 25px;
+  display: inline-block;
+}
+
+.movieTitle {
+  display: block;
+}
+
+.criticScore {
+  display: block;
+}
+
+.audienceScore {
+  display: block;
+}
+
+.cast {
+  display: block;
+  overflow: ellipsis;
+}
+
+.actor {
+}
+
+.criticsConsensus {
+  display: block;
+  cursor: pointer;
+}
+
+.runtime {
+  display: block;
+}
+
+.mpaaRating {
+  display: block;
+}
+
+.synopsis {
+  display: block;
+  cursor: pointer;
+}
+
+.movieHR {
+  margin-bottom: 10px;
+}
+
+
+/* outings */
+
+.centered {
+  text-align: center;
+}
+
+.outingsSectionHeader {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #00A8C6;
+}
+
+.outingsList {
+  font-size: 14pt;
+  color: black;
+}
+
+.outingMovie {
+  color: white;
+}
+
+.outingDate {
+  color: gray;
+}
+
+.outingTheater {
+  color: white;
+}
+
+.outingInvitees {
+}
+
+.outingAttendees {
+  color: gray;
+}
+
+/* footer */
+.footer {
+  background: url('../images/grey_wash_wall.png');
+  height: 100px;
+}
+
+@media (min-width: 990px) {
+  .container {
+  }
+
+  .headerDiv {
+  }
+
+  .appHeader {
+  }
+
+  .sectionDiv {
+  }
+
+  .sectionHeader {
+  }
+
+  .sectionContainer {
+  }
+
+  .sectionContainerProfile {
+    min-width: 1170px;
+  }
+
+  /* login fun */
+
+  .loginContainer {
+  }
+
+  .loginHeaderDiv {
+  }
+
+  .loginHeader {
+    font-size: 7em;
+  }
+
+  .loginHeaderTwo {
+  }
+
+  .loginDiv {
+    margin-top: 150px;
+  }
+
+  .fbLogin {
+  }
+
+  .fbLogin:focus {
+  }
+
+  /* profile fun */
+
+  .profileSection{
+  }
+
+  .profile {
+  }
+
+  #profilePicDiv {
+    margin-left: 50px;
+  }
+
+  #profilePic {
+
+  }
+
+  #userDetails {
+    margin-top: 0px;
+    width: 400px;
+    margin-left: 150px;
+  }
+
+  #userMovieDetails {
+    margin-top: 0px;
+    width: 400px;
+  }
+
+  .userDetail {
+    font-size: 1.5em;
+    width: 360px;
+  }
+
+  .editableUserDetail {
+
+  }
+
+  /* css override of xeditable angular */
+  .editable-controlers {
+    display: inline;
+  }
+
+  .editable-input {
+    width: 130px !important;
+    font-size: 1em;
+  }
+
+  .editable-input:focus {
+  }
+
+  .editable-buttons button {
+  }
+
+  /* friends */
+
+  .sectionContainerFriends {
+  }
+
+  .friendsSection {
+  }
+
+  .friendsSectionHeader {
+  }
+
+  .friend {
+  }
+
+  .friendsPhoto {
+  }
+
+  .friendName {
+  }
+
+  /* movies */
+
+  .moviesSection {
+  }
+
+  .moviesSectionHeader {
+  }
+
+  .filters {
+    min-width: 1050px;
+  }
+
+  .filter {
+    width: 200px;
+    height: 50px;
+  }
+
+  .filter:hover {
+  }
+
+  .searchFilter {
+    height: 50px;
+    font-size: 1.5em;
+  }
+
+  .searchFilter:focus {
+  }
+
+  .movie {
+    font-size: 1.3em;
+    min-width: 1050px;
+  }
+
+  .movieThumb {
+    margin-left: 50px;
+  }
+
+  .infoOne {
+    width: 400px;
+  }
+
+  .infoTwo {
+    width: 400px;
+  }
+
+  .movieTitle {
+  }
+
+  .criticScore {
+  }
+
+  .audienceScore {
+  }
+
+  .cast {
+  }
+
+  .actor {
+  }
+
+  .criticsConsensus {
+  }
+
+  .runtime {
+  }
+
+  .mpaaRating {
+  }
+
+  .synopsis {
+  }
+
+  .movieHR {
+  }
+
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+
+.marketing p + h4 {
+  margin-top: 28px;
 }
