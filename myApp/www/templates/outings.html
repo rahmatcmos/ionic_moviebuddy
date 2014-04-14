@@ -1,8 +1,19 @@
 <ion-view title="Outings">
   <ion-content class="has-header padding">
-    <ion-button>create new outing</ion-button>
+    <!-- <ion-tabs class=" tabs-default tabs-icon-top">
+      <ion-tab title="Friends Outings" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+        
+        farid in da house1
+      </ion-tab>
+      <ion-tab title="My Outings" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+        
+        farid in da house2
+      </ion-tab>
+    </ion-tabs> -->
     <ion-list option-buttons="outingButtons">
-      <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
+      <ion-item ng-repeat="outing in outings" 
+                item="outing" 
+                can-swipe="true">
       MOVIE TITLE:
       {{outing.movie}}
       <br>
@@ -23,6 +34,10 @@
       <br>
       ZIP:
       {{outing.zip}}
+      <ion-option-button class="button-positive"
+                             ng-click="share(item)">
+        farid
+      </ion-option-button>
       </ion-item>
     </ion-list>
 

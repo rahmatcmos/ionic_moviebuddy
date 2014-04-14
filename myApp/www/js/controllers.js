@@ -13,7 +13,8 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', function (
        type: 'Button',
        onTap: function(item) {
          alert('Edit Item: ' + item.id);
-       }
+       },
+       class: 'button-positive'
      },
      {
        text: 'Delete',
@@ -176,20 +177,14 @@ app.controller('MoviesController', function ($scope, $http, getMoviesData) {
   // };
 
   // getMovies(queryPage, queryPageLimit);
-  $scope.itemButtons = [
+  $scope.movieButtons = [
      {
-       text: 'Edit',
+       text: 'Create Outing',
        type: 'Button',
        onTap: function(item) {
          alert('Edit Item: ' + item.id);
-       }
-     },
-     {
-       text: 'Share',
-       type: 'Button',
-       onTap: function(item) {
-         alert('Share Item: ' + item.id);
-       }
+       },
+       class: 'button-positive'
      }
   ];
 });

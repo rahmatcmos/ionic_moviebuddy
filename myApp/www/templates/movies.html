@@ -1,24 +1,20 @@
 <ion-view title="Movies">
   <ion-content class="has-header padding">
-    <ion-list>
-      <ion-item ng-repeat="movie in allMovies" item="movie" item-type="a" can-swipe="true" option-buttons="itemButtons">
-      <img src="{{movie.posters.profile}}"></img>
-      <br>
-      <b>TITLE:</b>
-      {{movie.title}}
-      <br>
-      <b>MPAA RATING:</b>
-      {{movie.ratings.critics_score}}
-      <br>
-      <b>CRITIC RATING:</b>
-      {{movie.ratings.critics_score}}
-      <br>
-      <b>AUDIENCE RATING:</b>
-      {{movie.ratings.audience_score}}
-      <br>
-      <b>SYNOPSIS:</b>
-      {{movie.synopsis}}
-      <br>
+    <ion-list option-buttons="movieButtons">
+      <ion-item ng-repeat="movie in allMovies" 
+                class="item-text-wrap" 
+                item="movie"
+                item-type="button-postive"
+                can-swipe="true">
+      <img style="float:left; margin: 5px;" src="{{movie.posters.profile}}"></img>
+      <br><div >
+        <b>{{movie.title}}</b>
+        <br>
+        <b>Score:</b>{{movie.ratings.audience_score}}
+        <br>
+        <b>Synopsis:</b>
+        {{movie.synopsis.slice(0,100)}}...
+      </div>
       </ion-item>
     </ion-list>
     <!-- {{allMovies}} -->
