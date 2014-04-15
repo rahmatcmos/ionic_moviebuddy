@@ -7,7 +7,23 @@ app.controller('DashController', function($scope) {
 });
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
-
+  $scope.outingButtons = [
+     {
+       text: 'Edit',
+       type: 'Button',
+       onTap: function(item) {
+         alert('Edit Item: ' + item.id);
+       },
+       class: 'button-positive'
+     },
+     {
+       text: 'Delete',
+       type: 'Button',
+       onTap: function(item) {
+         alert('Delete Item: ' + item.id);
+       }
+     }
+  ];
   var newOutingButtonVisible = true;
   var newOutingFormVisible = false;
 
@@ -161,20 +177,14 @@ app.controller('MoviesController', function ($scope, $http, getMoviesData) {
   // };
 
   // getMovies(queryPage, queryPageLimit);
-  $scope.itemButtons = [
+  $scope.movieButtons = [
      {
-       text: 'Edit',
+       text: 'Create Outing',
        type: 'Button',
        onTap: function(item) {
          alert('Edit Item: ' + item.id);
-       }
-     },
-     {
-       text: 'Share',
-       type: 'Button',
-       onTap: function(item) {
-         alert('Share Item: ' + item.id);
-       }
+       },
+       class: 'button-positive'
      }
   ];
 });
