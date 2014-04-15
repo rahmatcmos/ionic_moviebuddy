@@ -1,11 +1,20 @@
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
+  $scope.allMovies = $rootScope.allMovies;
+
   $scope.outingButtons = [
+     {
+      text: 'Edit',
+      type: 'Button',
+      onTap: function(item) {
+
+      }
+     },
      {
        text: 'Join',
        type: 'Button',
        onTap: function(item) {
-         alert('Edit Item: ' + item.id);
+         $scope.joinOuting();
        },
        class: 'button-positive'
      },
@@ -22,13 +31,11 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     $ionicSideMenuDelegate.toggleLeft();
   };
 
-
-
   var newOutingButtonVisible = true;
   var newOutingFormVisible = false;
 
   // Rewrite using angular.forEach()?
-  var clearOutingForm = function() {
+  $scope.clearOutingForm = function() {
     $scope.form.movie = '';
     $scope.form.date = '';
     $scope.form.theater = '';
@@ -36,23 +43,20 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   };
 
   // Function to create new 'outing' object from form and user.
-  var createOuting = function(form, userId, userName) {
-    if(form === undefined || userId === undefined || userName === undefined) {
+  $scope.createOuting = function(form, userId, userName) {
+    if (form === undefined || userId === undefined || userName === undefined) {
       throw new Error('Insufficient input for function.');
     }
+
     var outing = {};
-    outing.movie = form.movie;
-    outing.date = form.date;
+
+    outing.movie = form.movie.title;
+    outing.date = form.date+'T07:00:00Z'; // Add 7 hours so angular shows correct date in THIS TIME ZONE ONLY omg fix this guyz.
     outing.theater = form.theater;
-    // Look up below values via TMS or Fandango API or app DB.
-    // outing.address;    // outing.city;    // outing.state;    // outing.zip;
-    // Postpone invitation funcationality for post-MVP.
-    // outing.invitees = form.invitees;
     outing.attendees = {};
     outing.attendees[userId] = { name: userName };
-    outing.attendees[1001] = { name: 'Alice' };
-    outing.attendees[1002] = { name: 'Bob' };
-    outing.creator = userId;
+    outing.organizers = {};
+    outing.organizers[userId] = { name: userName };
     return outing;
   };
 
@@ -80,26 +84,24 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   };
 
   // Function to process 'new outing' form.
+  // Processes 'new outing' form.
   $scope.processOutingForm = function() {
     var form = $scope.form;
     var userId = $rootScope.user.facebookId;
     var userName = $rootScope.user.name;
-    var outing = createOuting(form, userId, userName);
+    var outing = $scope.createOuting(form, userId, userName);
+    
     $http({
       method: 'POST',
       url: '/api/outings',
       data: outing
     })
-    .success(function(data) {
-      console.log('POST Success:', data);
-      clearOutingForm();
-      // Hide 'new outing' form, show 'new outing' button.
-      newOutingFormVisible = false;
-      newOutingButtonVisible = true;
-      // Refresh the 'outings' display.
+    .success(function (data) {
+      $scope.clearOutingForm();
+      $scope.cancelNewOuting();
       $scope.getOutings();
     })
-    .error(function(data, status, headers, config) {
+    .error(function (data, status, headers, config) {
       console.log('POST Error:', data, status, headers, config);
     });
   };
@@ -154,6 +156,33 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     });
 
   };
+
+  $scope.showEditButton = function() {
+    var userId = $rootScope.user.facebookId;
+    var outing = this.outing;
+
+    for (var organizerId in outing.organizers) {
+      if (Number(organizerId) === Number(userId)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  $scope.editOuting = function() {
+    var outing = this.outing;
+    var outingId = this.outing._id;
+
+    $http({
+      method: 'PUT',
+      url: '/api/outings/' + outingId,
+      data: outing
+    });
+  };
+
+  $scope.getOutings(); // Initialize display of outings.
+  $scope.form = {}; // Define empty object to hold form data.
 
   // Initialize display of outings.
   $scope.getOutings();

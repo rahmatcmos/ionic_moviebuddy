@@ -7,26 +7,33 @@
         <ion-scroll>
           <ion-list option-buttons="outingButtons">
               <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
-              MOVIE TITLE:
-              {{outing.movie}}
-              <br>
-              DATE:
-              {{outing.date}}
-              <br>
-              THEATER:
-              {{outing.theater}}
-              <br>
-              ADDRESS:
-              {{outing.address}}
-              <br>
-              CITY:
-              {{outing.city}}
-              <br>
-              STATE:
-              {{outing.state}}
-              <br>
-              ZIP:
-              {{outing.zip}}
+                <form editable-form name='editableForm' onaftersave="editOuting()">
+                    
+                    MOVIE TITLE:
+                    <span class='movieDetail' editable-select='outing.movie' e-required e-ng-options="movie.title as movie.title for movie in allMovies">
+                    {{outing.movie}}
+                    </span>
+                    <br>
+                    DATE:
+                    <span  class='movieDetail' editable-date='outing.date'>
+                    {{outing.date | date: 'EEE. MMM. d' }}
+                    </span>
+                    <br>
+                    THEATER:
+                    <span  class='movieDetail' editable-text='outing.theater'>
+                    {{outing.theater}}
+                    </span>
+                    <br>
+                    ATTENDEES:
+                    <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}}
+                    </span>
+                    <br>
+                    <button type="button" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && showEditButton()" class='button button-calm'>Edit</button>
+                    <span ng-show="editableForm.$visible">
+                      <button type="submit" ng-disabled="editableForm.$waiting" class='button button-balanced'>Save Edit</button>
+                      <button type="button" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" class='button button-assertive'>Cancel Edit</button>
+                    </span>
+                </form>
               </ion-item>
             </ion-list>
           </ion-scroll>
@@ -38,20 +45,20 @@
           <h1 class='title'>New Outing</h1>
         </ion-header-bar>
         <br><br>
-        <form class="outingsForm">
+        <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
           <label class='item item-input'>
-            <input type='text' placeholder='Movie'>
+            <input ng-model='form.movie.title' type='text' placeholder='Movie'>
           </label>
           <label class='item item-input'>
-            <input type='date'>
+            <input ng-model='form.date' type='date'>
           </label>
           <label class='item item-input'>
-            <input type='text' placeholder='Theater'>
+            <input ng-model='form.theater' type='text' placeholder='Theater'>
           </label>
-          <label class='item item-input'>
+<!--           <label class='item item-input'>
             <input type='text' placeholder='Add Friends'>
-          </label>
-          <button class='button button-full button-positive'>Submit</button>
+          </label> -->
+          <button type='submit' class='button button-full button-positive'>Submit</button>
         </form>
       </ion-content>
     </ion-side-menu>
