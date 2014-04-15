@@ -1,21 +1,34 @@
 <ion-view title="Movies">
-  <ion-content class="has-header padding">
-    <ion-list option-buttons="movieButtons">
-      <ion-item ng-repeat="movie in allMovies" 
-                class="item-text-wrap" 
-                item="movie"
-                item-type="button-postive"
-                can-swipe="true">
-      <img style="float:left; margin: 5px;" src="{{movie.posters.profile}}"></img>
-      <br><div >
-        <b>{{movie.title}}</b>
-        <br>
-        <b>Score:</b>{{movie.ratings.audience_score}}
-        <br>
-        <b>Synopsis:</b>
-        {{movie.synopsis.slice(0,100)}}...
+  <ion-content class="">
+    <ion-header-bar class="bar bar-header bar-positive">
+      <div class="button-bar">
+        <button class="button " ng-click="">Audience Score</button>&nbsp;&nbsp;
+        <button class="button " ng-click="">Critic Score</button>&nbsp;&nbsp;
+        <button class="button " ng-click="">Title</button>&nbsp;&nbsp;
+        <button class="button " ng-click="">Runtime</button>&nbsp;&nbsp;
+        <!-- <input style="text-align:center" placeholder="search movies" ng-model="searchText"/> -->
+        
       </div>
-      </ion-item>
-    </ion-list>
+    </ion-header-bar>
+    <ion-scroll >
+
+      <ion-list option-buttons="movieButtons" class="has-headers padding">
+        <ion-item ng-repeat="movie in allMovies" 
+                  class="item-text-wrap" 
+                  item="movie"
+                  item-type="button-postive"
+                  can-swipe="true">
+        <img style="float:left; margin: 5px;" src="{{movie.posters.profile}}"></img>
+        <br><div >
+          <b>{{movie.title}}</b>
+          <br>
+          <b>Score:</b>{{movie.ratings.audience_score}}
+          <br>
+          <b>Synopsis:</b>
+          {{movie.synopsis.slice(0,100)}}...
+        </div>
+        </ion-item>
+      </ion-list>
+    </ion-scroll>
   </ion-content>
 </ion-view>

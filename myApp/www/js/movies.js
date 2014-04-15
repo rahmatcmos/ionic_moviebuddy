@@ -3,17 +3,6 @@ app.controller('MoviesController', function ($scope, $http, getMoviesData) {
   var queryPage = 1;
   var queryPageLimit = 50;
 
-  // $scope.allMovies = $rootScope.allMovies;
-
-
-  // var getMovies = function(queryPage, queryPageLimit) {
-  //   getMoviesData.getMovieData(queryPage, queryPageLimit)
-  //   .then(function(){
-  //     $scope.allMovies = getMoviesData.allMovies;
-  //   });
-  // };
-
-  // getMovies(queryPage, queryPageLimit);
   $scope.movieButtons = [
      {
        text: 'Create Outing',
