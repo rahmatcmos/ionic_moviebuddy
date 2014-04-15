@@ -1,0 +1,48 @@
+<ion-view title='profile'>
+  <ion-content class="has-header padding">
+    <div class="sectionContainerProfile">
+
+      <div id="profilePicDiv">
+        <img id="profilePic" src='http://graph.facebook.com/{{user.facebookId}}/picture?type=large'></img>
+      </div>
+
+      <div id="userDetails">
+        <span class="userDetail">
+          <u>Name:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.name'>{{user.name || 'update'}}</span>
+        </span>
+        <span class="userDetail">
+          <u>Age:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.age'>{{user.age || 'update'}}</span>
+        </span>
+        <span class="userDetail">
+          <u>Current City:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.currentCity'>{{user.currentCity || 'update'}}</span>
+        </span>
+        <span class="userDetail" >
+          <u>Hometown:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.hometown'>{{user.hometown || 'update'}}</span>
+        </span>
+      </div>
+
+      <div id="userMovieDetails">
+        <span class="userDetail">
+          <u>Favorite Movie:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.favMovie'>{{user.favMovie || 'update'}}</span>
+        </span>
+        <span class="userDetail">
+          <u>Favorite Genre:</u>
+         <span  class='editableUserDetail' onaftersave='updateUser()' editable-text='user.favGenre'>{{user.favGenre || 'update'}}</span>
+       </span>
+        <span class="userDetail">
+          <u>Favorite Theater:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.favTheater'>{{user.favTheater || 'update'}}</span>
+        </span>
+        <span class="userDetail">
+          <u>Favorite Actor:</u> 
+          <span class='editableUserDetail' onaftersave='updateUser()' editable-text='user.favActor'>{{user.favActor || 'update'}}</span>
+        </span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
