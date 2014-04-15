@@ -38,7 +38,7 @@ app.service('getMoviesData', function($http, $rootScope){
       }
     });
   };
-  this.getMovieData(1,50);
+
 });
 
 app.service('getUsers', function($http) {

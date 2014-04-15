@@ -36,6 +36,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       resolve: {
         isLoggedIn: function(authentication) {
           return authentication.auth();
+        },
+        getMovies: function($rootScope, getMoviesData) {
+          return getMoviesData.getMovieData(1,50);
         }
       },
       controller: 'DashController'
@@ -48,11 +51,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: 'OutingsController'
         }
       },
-      // resolve: {
-      //   isLoggedIn: function(authentication){
-      //     return authentication.auth();
-      //   }
-      // }
+      resolve: {
+        isLoggedIn: function(authentication){
+          return authentication.auth();
+        }
+      }
     })
     .state('dash.movies', {
       url: '/movies',

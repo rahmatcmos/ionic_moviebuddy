@@ -16,24 +16,13 @@ app.controller('MoviesController', function ($scope, $http, getMoviesData) {
 });
 
 
-app.controller('SynopsisController', function($scope){
-  $scope.textLimit = 40;
+app.controller('MovieInfoController', function($scope){
+  $scope.textLimit = 80;
   $scope.moreText = '...';
 
   $scope.toggleText = function(text){
     if (!text) { text = ' '; }
-    $scope.textLimit = $scope.textLimit === 40 ? $scope.textLimit = text.length : $scope.textLimit = 40;
+    $scope.textLimit = $scope.textLimit === 80 ? $scope.textLimit = text.length : $scope.textLimit = 80;
     $scope.moreText =  $scope.moreText === '...'? $scope.moreText = '' : $scope.moreText = '...';
-  };
-});
-
-app.controller('CriticsController', function($scope){
-  $scope.textLimit = 40;
-  $scope.moreText = '...';
-
-  $scope.toggleText = function(text){
-    if (!text) { text = ' '; }
-    $scope.textLimit = $scope.textLimit === 40 ? $scope.textLimit = text.length : $scope.textLimit = 40;
-    $scope.moreText =  $scope.moreText === '...' ? $scope.moreText = '' : $scope.moreText = '...';
   };
 });

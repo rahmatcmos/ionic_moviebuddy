@@ -1,18 +1,17 @@
 <ion-view title="Movies">
   <ion-content class="">
-    <ion-header-bar class="bar bar-header bar-positive">
+    <ion-header-bar class="bar bar-header bar-light">
       <div class="button-bar">
-        <button class="button " ng-click="category = 'ratings.audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'ratings.critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'ratings.audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'ratings.critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
         <!-- <input style="text-align:center" placeholder="search movies" ng-model="searchText"/> -->
         <hr>
-
       </div>
     </ion-header-bar>
     <ion-scroll >
-
+      <br>
       <ion-list option-buttons="movieButtons" class="has-headers padding">
         <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
                   class="item-text-wrap" 
@@ -30,7 +29,8 @@
           <b>Runtime:</b>{{movie.runtime = movie.runtime? movie.runtime: 0}}
           <br>
           <b>Synopsis:</b>
-          {{movie.synopsis.slice(0,100)}}...
+          <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
+            {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span>
         </div>
         </ion-item>
       </ion-list>

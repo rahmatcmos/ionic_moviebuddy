@@ -6,5 +6,16 @@ app.controller('FriendsController', function($scope, $rootScope, getFriends) {
     $scope.friends = data.data;
   });
 
+  $scope.currentFriendsSelected = {};
+
+  $scope.itemButtons = [
+    {
+      text: 'Add',
+      type: 'Button',
+      onTap: function(item) {
+        $scope.currentFriendsSelected[item.facebookId] = item;
+      }
+    }
+  ];
 
 });

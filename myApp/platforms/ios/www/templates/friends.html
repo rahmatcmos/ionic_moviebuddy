@@ -1,8 +1,10 @@
 <ion-view>
   <ion-content>
-    <ion-list ng-repeat='friend in friends'>
-      <img id="friendPic" src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'></img>
-      <span class='friendName'>{{friend.name}}</span>
+    <ion-list option-buttons='itemButtons'>
+      <ion-item ng-repeat='friend in friends' item='friend' can-swipe='true' >
+        <img class='friendsPhoto' src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'></img>
+        <span class='friendName'>{{friend.name}}</span>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

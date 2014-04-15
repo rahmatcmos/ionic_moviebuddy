@@ -4,25 +4,18 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   $scope.outingButtons = [
      {
-      text: 'Edit',
-      type: 'Button',
-      onTap: function(item) {
-
-      }
-     },
-     {
        text: 'Join',
        type: 'Button',
-       onTap: function(item) {
-         $scope.joinOuting();
+       onTap: function(outing) {
+         $scope.joinOuting(outing);
        },
        class: 'button-positive'
      },
      {
-       text: 'Hide',
+       text: 'Share',
        type: 'Button',
        onTap: function(item) {
-         alert('Delete Item: ' + item.id);
+         
        }
      }
   ];
@@ -131,12 +124,11 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     return true;
   };
 
-  $scope.joinOuting = function() {
+  $scope.joinOuting = function(outing) {
 
     var userId = $rootScope.user.facebookId;
     var userName = $rootScope.user.name;
-    var outing = this.outing;
-    var outingId = this.outing._id;
+    var outingId = outing._id;
     if(outing.attendees[userId]) {
       throw new Error('User is already attending.');
     }
@@ -154,7 +146,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     .error(function(data, status, headers, config) {
       console.log('PUT Error:', data, status, headers, config);
     });
-
   };
 
   $scope.showEditButton = function() {
