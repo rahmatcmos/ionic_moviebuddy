@@ -1,5 +1,5 @@
 
-app.controller('OutingsController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
+app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
   $scope.outingButtons = [
      {
        text: 'Join',
@@ -18,7 +18,11 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', function (
      }
   ];
 
-  
+  $scope.toggleLeft = function(){
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+
+
 
   var newOutingButtonVisible = true;
   var newOutingFormVisible = false;

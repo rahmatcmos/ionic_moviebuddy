@@ -1,34 +1,39 @@
 <ion-view title="Outings">
-  <ion-content class="has-header padding">
-    <button class='button button-energized button-full'>Create Outing
-    </button>
-    <ion-scroll>
-      <ion-list option-buttons="outingButtons">
-          <ion-item ng-repeat="outing in outings" 
-                    item="outing" 
-                    can-swipe="true">
-          MOVIE TITLE:
-          {{outing.movie}}
-          <br>
-          DATE:
-          {{outing.date}}
-          <br>
-          THEATER:
-          {{outing.theater}}
-          <br>
-          ADDRESS:
-          {{outing.address}}
-          <br>
-          CITY:
-          {{outing.city}}
-          <br>
-          STATE:
-          {{outing.state}}
-          <br>
-          ZIP:
-          {{outing.zip}}
-          </ion-item>
-        </ion-list>
-      </ion-scroll>
-  </ion-content>
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-content class="has-header padding">
+        <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing
+        </button>
+        <ion-scroll>
+          <ion-list option-buttons="outingButtons">
+              <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
+              MOVIE TITLE:
+              {{outing.movie}}
+              <br>
+              DATE:
+              {{outing.date}}
+              <br>
+              THEATER:
+              {{outing.theater}}
+              <br>
+              ADDRESS:
+              {{outing.address}}
+              <br>
+              CITY:
+              {{outing.city}}
+              <br>
+              STATE:
+              {{outing.state}}
+              <br>
+              ZIP:
+              {{outing.zip}}
+              </ion-item>
+            </ion-list>
+          </ion-scroll>
+      </ion-content>
+    </ion-side-menu-content>
+    <ion-side-menu side='left'>
+    </ion-side-menu>
+  </ion-side-menus>
+  
 </ion-view>
