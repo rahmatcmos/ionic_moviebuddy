@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginController'
     })
     .state('dash', {
       url: '/dash',
