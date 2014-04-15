@@ -1,7 +1,8 @@
+
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
   $scope.outingButtons = [
      {
-       text: 'Edit',
+       text: 'Join',
        type: 'Button',
        onTap: function(item) {
          alert('Edit Item: ' + item.id);
@@ -103,7 +104,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', function (
       url: '/api/outings'
     })
     .success(function(data) {
-      console.log('GET Success:', data);
       $scope.outings = data;
       $rootScope.outings = data;
     })

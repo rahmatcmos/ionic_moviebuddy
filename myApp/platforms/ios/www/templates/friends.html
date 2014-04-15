@@ -1,0 +1,8 @@
+<ion-view>
+  <ion-content>
+    <ion-list ng-repeat='friend in friends'>
+      <img id="friendPic" src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'></img>
+      <span class='friendName'>{{friend.name}}</span>
+    </ion-list>
+  </ion-content>
+</ion-view>

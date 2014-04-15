@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+var app = angular.module('starter', ['ionic','xeditable', 'starter.controllers', 'starter.services' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -41,28 +41,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: 'DashController'
     })
     .state('dash.outings', {
-      url: "/outings",
+      url: '/outings',
       views: {
         'outings': {
-          templateUrl: "templates/outings.html",
+          templateUrl: 'templates/outings.html',
           controller: 'OutingsController'
         }
       },
-      resolve: {
-        isLoggedIn: function(authentication){
-          return authentication.auth();
-        }
-      }
+      // resolve: {
+      //   isLoggedIn: function(authentication){
+      //     return authentication.auth();
+      //   }
+      // }
     })
     .state('dash.movies', {
       url: '/movies',
       views: {
         'movies' : {
-          templateUrl: "templates/movies.html",
+          templateUrl: 'templates/movies.html',
           controller: 'MoviesController'
         }
       },
-      templateUrl: 'templates/movies.html',
       resolve: {
         isLoggedIn: function(authentication) {
           return authentication.auth();
@@ -73,11 +72,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/profile',
       views: {
         'profile' : {
-          templateUrl: "templates/profile.html",
+          templateUrl: 'templates/profile.html',
           controller: 'ProfileController'
         }
       },
-      templateUrl: 'templates/profile.html',
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.friends', {
+      url: '/friends',
+      views: {
+        'friends' : {
+          templateUrl: 'templates/friends.html',
+          controller: 'FriendsController'
+        }
+      },
       resolve: {
         isLoggedIn: function(authentication) {
           return authentication.auth();
