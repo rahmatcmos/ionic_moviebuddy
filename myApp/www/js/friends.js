@@ -13,14 +13,7 @@ app.controller('FriendsController', function($scope, $rootScope, getFriends) {
       text: 'Add',
       type: 'Button',
       onTap: function(item) {
-        if (this.text === 'Remove') {
-          delete $scope.currentFriendsSelected[item.facebookId];
-          this.text = 'Add';
-        } else {
-          $scope.currentFriendsSelected[item.facebookId] = item;
-          this.text = 'Remove';
-        }
-        
+        $scope.currentFriendsSelected[item.facebookId] = item;
       }
     }
   ];

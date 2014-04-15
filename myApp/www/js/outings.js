@@ -10,13 +10,16 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', function (
        class: 'button-positive'
      },
      {
-       text: 'Delete',
+       text: 'Hide',
        type: 'Button',
        onTap: function(item) {
          alert('Delete Item: ' + item.id);
        }
      }
   ];
+
+  
+
   var newOutingButtonVisible = true;
   var newOutingFormVisible = false;
 

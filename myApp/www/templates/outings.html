@@ -1,45 +1,34 @@
 <ion-view title="Outings">
   <ion-content class="has-header padding">
-    <!-- <ion-tabs class=" tabs-default tabs-icon-top">
-      <ion-tab title="Friends Outings" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
-        
-        farid in da house1
-      </ion-tab>
-      <ion-tab title="My Outings" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
-        
-        farid in da house2
-      </ion-tab>
-    </ion-tabs> -->
-    <ion-list option-buttons="outingButtons">
-      <ion-item ng-repeat="outing in outings" 
-                item="outing" 
-                can-swipe="true">
-      MOVIE TITLE:
-      {{outing.movie}}
-      <br>
-      DATE:
-      {{outing.date}}
-      <br>
-      THEATER:
-      {{outing.theater}}
-      <br>
-      ADDRESS:
-      {{outing.address}}
-      <br>
-      CITY:
-      {{outing.city}}
-      <br>
-      STATE:
-      {{outing.state}}
-      <br>
-      ZIP:
-      {{outing.zip}}
-      <ion-option-button class="button-positive"
-                             ng-click="share(item)">
-        farid
-      </ion-option-button>
-      </ion-item>
-    </ion-list>
-
+    <button class='button button-energized button-full'>Create Outing
+    </button>
+    <ion-scroll>
+      <ion-list option-buttons="outingButtons">
+          <ion-item ng-repeat="outing in outings" 
+                    item="outing" 
+                    can-swipe="true">
+          MOVIE TITLE:
+          {{outing.movie}}
+          <br>
+          DATE:
+          {{outing.date}}
+          <br>
+          THEATER:
+          {{outing.theater}}
+          <br>
+          ADDRESS:
+          {{outing.address}}
+          <br>
+          CITY:
+          {{outing.city}}
+          <br>
+          STATE:
+          {{outing.state}}
+          <br>
+          ZIP:
+          {{outing.zip}}
+          </ion-item>
+        </ion-list>
+      </ion-scroll>
   </ion-content>
 </ion-view>
