@@ -69,13 +69,11 @@ app.service('authentication', function($rootScope, $location, $http, $state) {
   };
 
   this.auth = function(){
-    console.log('In authentication');
     return $http({
       method: 'GET',
       url: '/auth/isLoggedIn'
     })
     .then(function(response){
-      console.log(response);
       if (response.data === 'false') {
         $state.go('login');
       }
