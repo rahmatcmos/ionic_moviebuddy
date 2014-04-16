@@ -1,13 +1,14 @@
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
   $scope.allMovies = $rootScope.allMovies;
+  $scope.toggleOutingsForm = false;
 
   $scope.outingButtons = [
      {
        text: 'Join',
        type: 'Button',
-       onTap: function(item) {
-         $scope.joinOuting();
+       onTap: function(outing) {
+         $scope.joinOuting(outing);
        },
        class: 'button-positive'
      },
@@ -22,6 +23,10 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   $scope.toggleLeft = function(){
     $ionicSideMenuDelegate.toggleLeft();
+  };
+
+  $scope.storeCurrent = function(movie) {
+    $rootScope.currentMovie = movie;
   };
 
   var newOutingButtonVisible = true;
@@ -124,12 +129,11 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     return true;
   };
 
-  $scope.joinOuting = function() {
+  $scope.joinOuting = function(outing) {
 
     var userId = $rootScope.user.facebookId;
     var userName = $rootScope.user.name;
-    var outing = this.outing;
-    var outingId = this.outing._id;
+    var outingId = outing._id;
     if(outing.attendees[userId]) {
       throw new Error('User is already attending.');
     }
@@ -147,7 +151,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     .error(function(data, status, headers, config) {
       console.log('PUT Error:', data, status, headers, config);
     });
-
   };
 
   $scope.showEditButton = function() {
@@ -176,8 +179,5 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   $scope.getOutings(); // Initialize display of outings.
   $scope.form = {}; // Define empty object to hold form data.
-
-  // Initialize display of outings.
-  $scope.getOutings();
 
 }]);

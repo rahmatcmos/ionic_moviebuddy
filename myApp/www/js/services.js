@@ -57,16 +57,16 @@ app.service('updateUsers', function($http) {
 });
 
 app.service('authentication', function($rootScope, $location, $http, $state) {
-  var cookieParser = function(cookie) {
-    var splitCookie = cookie.split(';');
-    for (var i = 0; i < splitCookie.length; i++){
-      var leftSide = splitCookie[i].split('=')[0];
-      var rightSide = splitCookie[i].split('=')[1];
-      if( rightSide === 'undefined') {
-        return JSON.parse(leftSide);
-      }
-    }
-  };
+  // var cookieParser = function(cookie) {
+  //   var splitCookie = cookie.split(';');
+  //   for (var i = 0; i < splitCookie.length; i++){
+  //     var leftSide = splitCookie[i].split('=')[0];
+  //     var rightSide = splitCookie[i].split('=')[1];
+  //     if( rightSide === 'undefined') {
+  //       return JSON.parse(leftSide);
+  //     }
+  //   }
+  // };
 
   this.auth = function(){
     return $http({
@@ -74,13 +74,11 @@ app.service('authentication', function($rootScope, $location, $http, $state) {
       url: '/auth/isLoggedIn'
     })
     .then(function(response){
+      console.log(response);
       if (response.data === 'false') {
         $state.go('login');
       }
-      if (window.document.cookie !== '') {
-        var userObj = cookieParser(window.document.cookie);
-        $rootScope.user = userObj;
-      }
+      $rootScope.user = response.data;
     });
   };
 });

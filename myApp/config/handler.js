@@ -199,9 +199,7 @@ exports.authFacebookCallback = function(req, res, next, passport) {
     if (!user) { return res.redirect('/'); }
     req.login(user, function (err) {
       if (err) { return next(err); }
-      req.session.username = 'farid';
-      res.cookie(JSON.stringify(user));
-      return res.redirect('http://localhost:8080/#/dash/outings');
+      return res.redirect('/#/dash/outings');
     });
   })(req, res, next);
 };

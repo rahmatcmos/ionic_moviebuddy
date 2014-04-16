@@ -1,6 +1,7 @@
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
   $scope.allMovies = $rootScope.allMovies;
+  $scope.toggleOutingsForm = false;
 
   $scope.outingButtons = [
      {
@@ -22,6 +23,10 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   $scope.toggleLeft = function(){
     $ionicSideMenuDelegate.toggleLeft();
+  };
+
+  $scope.storeCurrent = function(movie) {
+    $rootScope.currentMovie = movie;
   };
 
   var newOutingButtonVisible = true;
@@ -174,8 +179,5 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   $scope.getOutings(); // Initialize display of outings.
   $scope.form = {}; // Define empty object to hold form data.
-
-  // Initialize display of outings.
-  $scope.getOutings();
 
 }]);

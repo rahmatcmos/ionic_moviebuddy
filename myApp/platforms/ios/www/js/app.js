@@ -98,6 +98,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
           return authentication.auth();
         }
       }
+    })
+    .state('/#/dash/outings', {
+      url: '/dash/outings',
+      views: {
+        'outings': {
+          templateUrl: 'templates/outings.html',
+          controller: 'OutingsController'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication){
+          return authentication.auth();
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback

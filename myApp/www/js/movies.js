@@ -13,6 +13,7 @@ app.controller('MoviesController', function ($scope, $http, getMoviesData) {
        class: 'button-positive'
      }
   ];
+
 });
 
 

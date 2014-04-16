@@ -29,7 +29,7 @@
                     <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}}
                     </span>
                     <br>
-                    <button type="button" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && showEditButton()" class='button button-calm'>Edit</button>
+                    <button type="button" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && showEditButton()" class='button button-small button-calm'>Edit</button>
                     <span ng-show="editableForm.$visible">
                       <button type="submit" ng-disabled="editableForm.$waiting" class='button button-balanced'>Save Edit</button>
                       <button type="button" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" class='button button-assertive'>Cancel Edit</button>
@@ -47,8 +47,8 @@
         </ion-header-bar>
         <br><br>
         <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
-          <label class='item item-input'>
-            <select ng-model='form.movie.title' ng-options="movie.title for movie in allMovies" type='text' placeholder='Movie'></select>
+          <label class='item'>
+            <select ng-model='form.movie.title' ng-options="movie.title for movie in allMovies" type='text' class='selectMovie' placeholder='Movie'></select>
           </label>
           <label class='item item-input'>
             <input ng-model='form.date' type='date'>
@@ -56,9 +56,6 @@
           <label class='item item-input'>
             <input ng-model='form.theater' type='text' placeholder='Theater'>
           </label>
-<!--           <label class='item item-input'>
-            <input type='text' placeholder='Add Friends'>
-          </label> -->
           <button type='submit' class='button button-full button-positive'>Submit</button>
         </form>
       </ion-content>

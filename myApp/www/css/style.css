@@ -457,28 +457,18 @@ body {
   background-color: #00A8C6;
 }
 
-.outingsList {
-  font-size: 14pt;
-  color: black;
+.selectMovie {
+  width: 100%;
+  border: 0px;
+  padding: 0px;
 }
 
-.outingMovie {
-  color: white;
+.movieOutingsForm {
+
 }
 
-.outingDate {
-  color: gray;
-}
+.expandMovieOutingsForm {
 
-.outingTheater {
-  color: white;
-}
-
-.outingInvitees {
-}
-
-.outingAttendees {
-  color: gray;
 }
 
 /* footer */
