@@ -184,7 +184,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       url: '/api/outings'
     })
     .success(function(data) {
-      console.log(data);
       $rootScope.outings = data;
     })
     .error(function(data, status, headers, config) {
