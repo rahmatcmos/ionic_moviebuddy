@@ -1,10 +1,10 @@
 <ion-view>
   <ion-content>
     <ion-list option-buttons='itemButtons'>
-      <ion-item ng-click='toggle = !toggle'ng-repeat='friend in friends' item='friend' can-swipe='true' >
+      <ion-item ng-click='friendInfoBox = !friendInfoBox'ng-repeat='friend in friends' item='friend' can-swipe='true' >
         <img class='friendsPhoto' src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'></img>
         <span class='friendName'>{{friend.name}}</span>
-        <div class="friendInfo" ng-show='toggle' ng-animate="'animate'">
+        <div class="friendsInfo animate-show" ng-show='friendInfoBox'>
             <span class="friendDetail">
               <u>Age:</u>
               <span>{{friend.age}}</span>

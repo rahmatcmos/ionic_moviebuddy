@@ -8,7 +8,7 @@
         <button class="button button-energized" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
       </div>
     </ion-header-bar>
-    <ion-scroll >
+    <ion-scroll>
       <br>
       <ion-list option-buttons="movieButtons" class="has-headers padding">
         <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
