@@ -37,8 +37,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
         isLoggedIn: function(authentication) {
           return authentication.auth();
         },
-        getMovies: function($rootScope, getMoviesData) {
-          return getMoviesData.getMovieData(1,50);
+        getZipandMovies: function($rootScope, getLocation, getTheaterData) {
+          getLocation.getZip()
+          .then(function(){
+            getTheaterData.getMovies();
+          });
         }
       },
       controller: 'DashController'

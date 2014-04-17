@@ -1,6 +1,6 @@
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
-  $scope.allMovies = $rootScope.allMovies;
+
   $scope.toggleOutingsForm = false;
 
   $scope.outingButtons = [
@@ -25,8 +25,80 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     $ionicSideMenuDelegate.toggleLeft();
   };
 
+  var theaterField = false;
+  var showtimeField = false;
+
+  $scope.theaters = {};
+  $scope.showtimes = [];
+
+  $scope.theaterField = function(){
+    return theaterField;
+  };
+
+  $scope.showtimeField = function(){
+    return showtimeField;
+  };
+
+  var showTheaterField = function(){
+    theaterField = true;
+  };
+
+  var showShowtimeField = function(){
+    showtimeField = true;
+  };
+  
+
+  $scope.getTheaters = function(movie){
+    if (movie.title !== '') {
+      showTheaterField();
+    }
+    $scope.currentMovie = movie;
+    for (var k = 0; k < movie.showtimes.length; k++){
+      $scope.theaters[movie.showtimes[k].theatre.name] = movie.showtimes[k];
+    }
+  };
+
+  $scope.getShowtimes = function(movie, theater) {
+    if (theater !== '') {
+      showShowtimeField();
+    }
+    $scope.showtimes = [];
+    for (var i = 0; i < movie.showtimes.length; i++) {
+      var showtime = movie.showtimes[i];
+      if ($scope.theaters[showtime.theatre.name]) {
+        var time = formatDate(new Date(showtime.dateTime));
+        $scope.showtimes.push(time);
+      }
+    }
+  };
+
+  var formatDate = function(date){
+    var hr = date.getHours();
+    var min = date.getMinutes();
+    var ampm = 'AM';
+
+    if (hr > 12) {
+      hr = hr - 12;
+      ampm = 'PM';
+    } else if (hr === 12) {
+      ampm = 'PM';
+    }
+
+    if (min < 10) {
+      min = '0' + min;
+    }
+
+    var time = hr + ':' + min + ampm;
+
+    return time;
+  };
+
   $scope.storeCurrent = function(movie) {
-    $rootScope.currentMovie = movie;
+    for (var i = 0; i < $rootScope.allMovies.length; i++) {
+      if (movie === $rootScope.allMovies[i].title) {
+        $scope.currentMovie = $rootScope.allMovies[i];
+      }
+    }
   };
 
   var newOutingButtonVisible = true;
@@ -37,6 +109,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     $scope.form.movie = '';
     $scope.form.date = '';
     $scope.form.theater = '';
+    $scope.form.showtime = '';
     // $scope.form.invitees = '';
   };
 
@@ -48,9 +121,10 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
     var outing = {};
 
-    outing.movie = form.movie.title;
+    outing.movie = $scope.currentMovie.title;
     outing.date = form.date+'T07:00:00Z'; // Add 7 hours so angular shows correct date in THIS TIME ZONE ONLY omg fix this guyz.
-    outing.theater = form.theater;
+    outing.theater = form.theater.theatre.name;
+    outing.showtime = form.showtime;
     outing.attendees = {};
     outing.attendees[userId] = { name: userName };
     outing.organizers = {};
@@ -88,7 +162,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     var userId = $rootScope.user.facebookId;
     var userName = $rootScope.user.name;
     var outing = $scope.createOuting(form, userId, userName);
-    
     $http({
       method: 'POST',
       url: '/api/outings',
@@ -111,7 +184,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       url: '/api/outings'
     })
     .success(function(data) {
-      $scope.outings = data;
+      console.log(data);
       $rootScope.outings = data;
     })
     .error(function(data, status, headers, config) {

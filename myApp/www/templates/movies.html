@@ -2,8 +2,8 @@
   <ion-content class="">
     <ion-header-bar class="bar bar-header bar-light">
       <div class="button-bar">
-        <button class="button button-energized" ng-click="category = 'ratings.audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
-        <button class="button button-energized" ng-click="category = 'ratings.critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
         <button class="button button-energized" ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
         <button class="button button-energized" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
       </div>
@@ -16,16 +16,16 @@
                   item="movie"
                   item-type="button-postive"
                   can-swipe="true">
-          <img style=" float:block; margin: 5px;" src="{{movie.posters.profile}}"></img>
+          <img style=" height: 140px; width: 105px; float:block; margin: 5px;" src="{{movie.thumbnail}}"></img>
           <br>
           <div >
             <b>{{movie.title}}</b>
             <br>
-            <b>Critic Score:</b>{{movie.ratings.critics_score}}
+            <b>Critic Score:</b>{{movie.critics_score}}
             <br>
-            <b>Audience Score:</b>{{movie.ratings.audience_score}}
+            <b>Audience Score:</b>{{movie.audience_score}}
             <br>
-            <b>Runtime:</b>{{movie.runtime = movie.runtime? movie.runtime: 0}} min.
+            <b>Runtime:</b>{{movie.runtime = movie.runtime ? movie.runtime : 0}} min.
             <br>
             <b>Synopsis:</b>
             <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
@@ -40,10 +40,20 @@
               <h2>Create An Outing:</h2>
               <hr>
 
-              <form ng-submit="processOutingForm()" name="outingForm">
-                <input ng-model="form.date" name="date" type="date" class="outingField">
-                <input ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField">
-                <button type="submit" class="button button-small button-calm">Create Outing</button>
+              <form name="outingForm">
+                <div>
+                  1. Select A Date:
+                  <input ng-model="form.date" name="date" type="date" class="outingField" ng-change='getTheaters(currentMovie)'>
+                </div>
+                <div ng-show="theaterField()">
+                  2. Select a Theater
+                  <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(currentMovie, form.theater)' ></select>
+                </div>
+                <div ng-show="showtimeField()">
+                  3. Select a Showtime
+                  <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for showtime in showtimes" ></select>
+                </div>
+                <button type="submit" ng-click='processOutingForm()' class="button button-small button-calm">Create Outing</button>
                 <button class='button button-small button-assertive' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
               </form>
 

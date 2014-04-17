@@ -42,6 +42,7 @@ var outingSchema = mongoose.Schema({
   city: { type: String },
   state: { type: String },
   zip: { type: Number },
+  showtime: { type: String },
   // invitees:      { type: Array },
   // Example attendees: { 1001: { name: 'Alice', photo: 'alice.jpg' }, 1002: {...} }
   attendees: { type: Object },
