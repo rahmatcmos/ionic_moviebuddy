@@ -1,7 +1,4 @@
-app.controller('MoviesController', function ($scope, $http, getMoviesData) {
-
-  var queryPage = 1;
-  var queryPageLimit = 50;
+app.controller('MoviesController', function ($scope, $http) {
 
   $scope.movieButtons = [
      {
