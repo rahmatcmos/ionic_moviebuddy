@@ -1,22 +1,56 @@
 <ion-view title="Movies">
-  <ion-content class="has-header padding">
-    <ion-list option-buttons="movieButtons">
-      <ion-item ng-repeat="movie in allMovies" 
-                class="item-text-wrap" 
-                item="movie"
-                item-type="button-postive"
-                can-swipe="true">
-      <img style="float:left; margin: 5px;" src="{{movie.posters.profile}}"></img>
-      <br><div >
-        <b>{{movie.title}}</b>
-        <br>
-        <b>Score:</b>{{movie.ratings.audience_score}}
-        <br>
-        <b>Synopsis:</b>
-        {{movie.synopsis.slice(0,100)}}...
+  <ion-content class="">
+    <ion-header-bar class="bar bar-header bar-light">
+      <div class="button-bar">
+        <button class="button button-energized" ng-click="category = 'ratings.audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'ratings.critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
+        <button class="button button-energized" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
       </div>
-      </ion-item>
-    </ion-list>
-    <!-- {{allMovies}} -->
+    </ion-header-bar>
+    <ion-scroll >
+      <br>
+      <ion-list option-buttons="movieButtons" class="has-headers padding">
+        <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
+                  class="item-text-wrap" 
+                  item="movie"
+                  item-type="button-postive"
+                  can-swipe="true">
+          <img style=" float:block; margin: 5px;" src="{{movie.posters.profile}}"></img>
+          <br>
+          <div >
+            <b>{{movie.title}}</b>
+            <br>
+            <b>Critic Score:</b>{{movie.ratings.critics_score}}
+            <br>
+            <b>Audience Score:</b>{{movie.ratings.audience_score}}
+            <br>
+            <b>Runtime:</b>{{movie.runtime = movie.runtime? movie.runtime: 0}} min.
+            <br>
+            <b>Synopsis:</b>
+            <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
+              {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span>
+          </div>
+
+          <div class="expandMovieOutingsForm" ng-controller='OutingsController'>
+            <button ng-show='!toggleOutingsForm' class='button button-positive' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+         
+            <div class="movieOutingsForm" ng-show='toggleOutingsForm' >
+              <br>
+              <h2>Create An Outing:</h2>
+              <hr>
+
+              <form ng-submit="processOutingForm()" name="outingForm">
+                <input ng-model="form.date" name="date" type="date" class="outingField">
+                <input ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField">
+                <button type="submit" class="button button-small button-calm">Create Outing</button>
+                <button class='button button-small button-assertive' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
+              </form>
+
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-scroll>
   </ion-content>
 </ion-view>

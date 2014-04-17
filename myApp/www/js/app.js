@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic','xeditable', 'starter.controllers', 'starter.services' ])
+var app = angular.module('starter', ['ionic','ngAnimate','xeditable', 'starter.controllers', 'starter.services' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,6 +36,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       resolve: {
         isLoggedIn: function(authentication) {
           return authentication.auth();
+        },
+        getMovies: function($rootScope, getMoviesData) {
+          return getMoviesData.getMovieData(1,50);
         }
       },
       controller: 'DashController'
@@ -78,6 +81,34 @@ app.config(function($stateProvider, $urlRouterProvider) {
       },
       resolve: {
         isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('dash.friends', {
+      url: '/friends',
+      views: {
+        'friends' : {
+          templateUrl: 'templates/friends.html',
+          controller: 'FriendsController'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('/#/dash/outings', {
+      url: '/dash/outings',
+      views: {
+        'outings': {
+          templateUrl: 'templates/outings.html',
+          controller: 'OutingsController'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication){
           return authentication.auth();
         }
       }

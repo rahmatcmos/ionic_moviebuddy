@@ -10,7 +10,7 @@ var passport = require('./config/passport').passport;
 
 var isLoggedIn = function(req, res) {
   if (req.isAuthenticated()){
-    res.send('true');
+    res.send(req.session.passport.user);
   } else {
     res.send('false');
   }

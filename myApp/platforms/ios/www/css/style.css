@@ -1,7 +1,5 @@
 /* Empty. Add your own CSS if you like */
 
-
-
 .login-page {
   background-color: #9DE0AD;
 }
@@ -175,9 +173,11 @@ body {
 }
 
 .logoDiv {
+
 }
 
 .logo {
+
 }
 
 .loginDiv {
@@ -221,12 +221,11 @@ body {
 
 .profile {
   margin-top: 20px;
-  min-width: 700px;
+
 }
 
 #profilePicDiv {
-  float: left;
-  margin-left: 15px;
+  text-align: center;
 }
 
 #profilePic {
@@ -237,22 +236,16 @@ body {
 
 #userDetails {
   margin-top: 10px;
-  margin-left: 30px;
-  width: 220px;
-  float: left;
+  text-align: center;
 }
 
 #userMovieDetails {
-  margin-top: 10px;
-  margin-left: 30px;
-  display: inline-block;
-  width: 270px;
+  text-align: center;
 }
 
 .userDetail {
   color: black;
   border: 0px;
-  width: 270px;
   line-height: 2.5em;
   display: block;
 }
@@ -270,8 +263,8 @@ body {
   border: 0px;
   border-bottom: 1px solid #333;
   height: 20px;
-  width: 100px !important;
-  background-color: #E0E4CC;
+  width: 300px !important;
+  background-color: #FFFFFF;
   font-family: 'Hammersmith One', sans-serif;
   text-transform: uppercase;
 }
@@ -308,33 +301,48 @@ body {
   padding: 0px !important;
 }
 
-.friendsSectionHeader {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #F38630;
-}
-
 .friend {
-  height: 75px;
-  padding: 10px;
-  background-color: lightgray;
-  border-radius: 5px;
-  width: 100%;
+
 }
 
 .friendsPhoto {
-  height: 70px;
-  border-radius: 20px;
+  height: 50px;
+  border-radius: 5px;
   float: left;
 }
 
 .friendName {
   display: inline-block;
   margin-left: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   font-size: 2em;
 }
+
+.friendDetail {
+  display: block;
+}
+
+.animate-show.ng-hide-add, 
+.animate-show.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  line-height:0;
+  opacity:0;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  line-height:20px;
+  opacity:1;
+}
+
 
 /* movies */
 
@@ -474,238 +482,22 @@ body {
   background-color: #00A8C6;
 }
 
-.outingsList {
-  font-size: 14pt;
-  color: black;
+.selectMovie {
+  width: 100%;
+  border: 0px;
+  padding: 0px;
 }
 
-.outingMovie {
-  color: white;
+.movieOutingsForm {
+
 }
 
-.outingDate {
-  color: gray;
-}
+.expandMovieOutingsForm {
 
-.outingTheater {
-  color: white;
-}
-
-.outingInvitees {
-}
-
-.outingAttendees {
-  color: gray;
 }
 
 /* footer */
 .footer {
   background: url('../images/grey_wash_wall.png');
   height: 100px;
-}
-
-@media (min-width: 990px) {
-  .container {
-  }
-
-  .headerDiv {
-  }
-
-  .appHeader {
-  }
-
-  .sectionDiv {
-  }
-
-  .sectionHeader {
-  }
-
-  .sectionContainer {
-  }
-
-  .sectionContainerProfile {
-    min-width: 1170px;
-  }
-
-  /* login fun */
-
-  .loginContainer {
-  }
-
-  .loginHeaderDiv {
-  }
-
-  .loginHeader {
-    font-size: 7em;
-  }
-
-  .loginHeaderTwo {
-  }
-
-  .loginDiv {
-    margin-top: 150px;
-  }
-
-  .fbLogin {
-  }
-
-  .fbLogin:focus {
-  }
-
-  /* profile fun */
-
-  .profileSection{
-  }
-
-  .profile {
-  }
-
-  #profilePicDiv {
-    margin-left: 50px;
-  }
-
-  #profilePic {
-
-  }
-
-  #userDetails {
-    margin-top: 0px;
-    width: 400px;
-    margin-left: 150px;
-  }
-
-  #userMovieDetails {
-    margin-top: 0px;
-    width: 400px;
-  }
-
-  .userDetail {
-    font-size: 1.5em;
-    width: 360px;
-  }
-
-  .editableUserDetail {
-
-  }
-
-  /* css override of xeditable angular */
-  .editable-controlers {
-    display: inline;
-  }
-
-  .editable-input {
-    width: 130px !important;
-    font-size: 1em;
-  }
-
-  .editable-input:focus {
-  }
-
-  .editable-buttons button {
-  }
-
-  /* friends */
-
-  .sectionContainerFriends {
-  }
-
-  .friendsSection {
-  }
-
-  .friendsSectionHeader {
-  }
-
-  .friend {
-  }
-
-  .friendsPhoto {
-  }
-
-  .friendName {
-  }
-
-  /* movies */
-
-  .moviesSection {
-  }
-
-  .moviesSectionHeader {
-  }
-
-  .filters {
-    min-width: 1050px;
-  }
-
-  .filter {
-    width: 200px;
-    height: 50px;
-  }
-
-  .filter:hover {
-  }
-
-  .searchFilter {
-    height: 50px;
-    font-size: 1.5em;
-  }
-
-  .searchFilter:focus {
-  }
-
-  .movie {
-    font-size: 1.3em;
-    min-width: 1050px;
-  }
-
-  .movieThumb {
-    margin-left: 50px;
-  }
-
-  .infoOne {
-    width: 400px;
-  }
-
-  .infoTwo {
-    width: 400px;
-  }
-
-  .movieTitle {
-  }
-
-  .criticScore {
-  }
-
-  .audienceScore {
-  }
-
-  .cast {
-  }
-
-  .actor {
-  }
-
-  .criticsConsensus {
-  }
-
-  .runtime {
-  }
-
-  .mpaaRating {
-  }
-
-  .synopsis {
-  }
-
-  .movieHR {
-  }
-
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-
-.marketing p + h4 {
-  margin-top: 28px;
 }
