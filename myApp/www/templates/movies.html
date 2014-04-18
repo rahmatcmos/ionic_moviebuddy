@@ -1,41 +1,40 @@
-<ion-view title="Movies">
-  <ion-content class="">
+<ion-view title="Movies" class='moviesView'>
+  <ion-content has-header="true" >
     <ion-header-bar class="bar bar-header bar-light">
-      <div class="button-bar">
-        <button class="button button-energized" ng-click="category = 'audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
-        <button class="button button-energized" ng-click="category = 'critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
-        <button class="button button-energized" ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
-        <button class="button button-energized" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
+      <div class="button-bar filters">
+        <button class="button button-energized filter" ng-click="category = 'audience_score'; reverse = !reverse ">Audience</button>
+        <button class="button button-energized filter" ng-click="category = 'critics_score'; reverse = !reverse">Critics</button>
+        <button class="button button-energized filter" ng-click="category = 'title'; reverse = !reverse">Title</button>
+        <button class="button button-energized filter" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>
       </div>
     </ion-header-bar>
-    <ion-scroll>
-      <br>
-      <ion-list option-buttons="movieButtons" class="has-headers padding">
-        <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
-                  class="item-text-wrap" 
+    <br><br>
+      <ion-list class='movieList' option-buttons="movieButtons" class="has-headers padding">
+        <ion-item style="text-align: center" ng-repeat="(movieTitle, movie) in allMovies | filter:search:strict | orderBy:category:reverse" 
+                  class="item-text-wrap movie" 
                   item="movie"
                   item-type="button-postive"
                   can-swipe="true">
-          <img style=" height: 140px; width: 105px; float:block; margin: 5px;" src="{{movie.thumbnail}}"></img>
-          <br>
-          <div >
-            <b>{{movie.title}}</b>
-            <br>
-            <b>Critic Score:</b>{{movie.critics_score}}
-            <br>
-            <b>Audience Score:</b>{{movie.audience_score}}
-            <br>
-            <b>Runtime:</b>{{movie.runtime = movie.runtime ? movie.runtime : 0}} min.
-            <br>
-            <b>Synopsis:</b>
+          <img class='movieThumb' src="{{movie.thumbnail}}"></img>
+          <div class='movieInfo'>
+            <span class='movieTitle' >{{movie.title}}</span>
+            <span class='criticsScore'>
+            Critic Score: {{movie.critics_score}}
+            </span>
+            <span class='audienceScore'>
+            Audience Score: {{movie.audience_score}}
+            <span>
+            <span class='runtime'>Runtime: {{movie.runtime = movie.runtime ? movie.runtime : 0}} min. </span>
+            <span class='synopsis'>Synopsis:
             <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
-              {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span>
+              {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span></span>
           </div>
 
           <div class="expandMovieOutingsForm" ng-controller='OutingsController'>
-            <button ng-show='!toggleOutingsForm' class='button button-positive' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+            <button class='button button-positive goSeeIt' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+            <button class='button button-energized fandangoBuy' ng-click="goTo(movie)">Buy A Ticket</button>
          
-            <div class="movieOutingsForm" ng-show='toggleOutingsForm' >
+            <div class="movieOutingsForm" ng-show='toggleOutingsForm'>
               <br>
               <h2>Create An Outing:</h2>
               <hr>
@@ -43,7 +42,7 @@
               <form name="outingForm">
                 <div>
                   1. Select A Date:
-                  <input ng-model="form.date" name="date" type="date" class="outingField" ng-change='getTheaters(currentMovie)'>
+                  <input class="outingField" ng-model="form.date" name="date" type="date"  ng-change='getTheaters(currentMovie); showTheaters()'>
                 </div>
                 <div ng-show="theaterField()">
                   2. Select a Theater
@@ -51,16 +50,16 @@
                 </div>
                 <div ng-show="showtimeField()">
                   3. Select a Showtime
-                  <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for showtime in showtimes" ></select>
+                  <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for (showtime, showtime) in showtimes"></select>
                 </div>
-                <button type="submit" ng-click='processOutingForm()' class="button button-small button-calm">Create Outing</button>
-                <button class='button button-small button-assertive' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
+                <br>
+                <button type="submit" ng-click='processOutingForm()' class="button button-small button-light">Create Outing</button>
+                <button class='button button-small button-light' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
               </form>
 
             </div>
           </div>
         </ion-item>
       </ion-list>
-    </ion-scroll>
   </ion-content>
 </ion-view>

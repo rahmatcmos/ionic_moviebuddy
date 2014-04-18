@@ -39,6 +39,11 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Avenir-Black';
+  src: url('../fonts/Avenir_LT_95_Black.ttf');
+}
+
 /* Google Fonts
 font-family: 'Inder', sans-serif;
 font-family: 'Viga', sans-serif;
@@ -64,58 +69,21 @@ html {
 }
 
 body {
-  font-family: 'Hammersmith One', sans-serif;
-  color: #333;
-  background: #E0E4CC;
-}
-
-.container {
-  min-width: 750px;
-}
-
-.headerDiv {
-  text-align: center;
-  background: url('../images/grey_wash_wall.png');
-  height: 100px;
-  padding-top: 10px;
-  padding-bottom: 30px;
+  font-family: 'Avenir-Black';
+  color: #333 !important;
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
 
 .appHeader {
-  background: url('../images/bearLogo.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  height: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 120px;
-  border-radius: 50%;
-  margin: auto;
-  background-color: white;
-  display: inline-block;
+
 }
 
 .logoutButton {
-  position: absolute;
-  display: inline-block;
-  padding: 8px 15px;
-  cursor: pointer;
-  border: 1px solid #00A8C6;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  color: #ffffff;
-  background-color: #00A8C6;
-  text-transform: uppercase;
-  margin-top: 40px;
-  margin-left: 100px;
+
 }
 
 .logoutButton:hover {
-  background-color: rgba(37, 244, 154, .75);
-  border-color: rgba(37, 244, 154, .75);
-  color: #ffffff;
+
 }
 
 .sectionDiv {
@@ -136,40 +104,25 @@ body {
 }
 
 .sectionContainerProfile {
-  color: black;
-  padding: 20px;
+
 }
 
 /* login fun */
 
 .loginContainer {
-  width: 100%;
-  background: url('../images/bg.jpg');
+
 }
 
 .loginHeaderDiv {
-  padding-bottom: 15px;
-  background: url('../images/grey_wash_wall.png');
+
 }
 
 .loginHeader {
-  font-family: 'Bebas';
-  letter-spacing: .05em;
-  color: white;
-  font-size: 5em;
-  text-transform: uppercase;
-  text-align: center;
-  word-spacing: .1em;
-  text-decoration: underline;
+
 }
 
 .loginHeaderTwo {
-  color: white ;
-  text-align: center; 
-  font-family: 'Bebas';
-  letter-spacing: .05em;
-  word-spacing: .2em;
-  margin-top: 10px;
+
 }
 
 .logoDiv {
@@ -181,13 +134,7 @@ body {
 }
 
 .loginDiv {
-  text-align: center;
-  padding: 10px;
-  margin: auto;
-  margin-top: 170px;
-  border-radius: 15px;
-  width: 400px;
-  background: url('../images/grey_wash_wall.png');
+
 }
 
 .fbLogin {
@@ -204,24 +151,16 @@ body {
 }
 
 .loginFooter {
-  height: 150px;
-  background: url('../images/grey_wash_wall.png');
-  bottom: 0;
-  margin: 0 auto;
+
 }
 
 /* Profile Fun */
 
 .profileSection{
-  height: 200px;
-  min-width: 750px;
-  text-transform: uppercase;
-  font-size: .75em;
+
 }
 
 .profile {
-  margin-top: 20px;
-
 }
 
 #profilePicDiv {
@@ -346,88 +285,61 @@ body {
 
 /* movies */
 
-.moviesSection {
-}
-
-.moviesSectionHeader {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: rgba(37, 244, 154, .75);
-}
 
 .filters {
   text-align: center;
-  min-width: 650px;
 }
 
 .filter {
-  padding: 8px 15px;
-  cursor: pointer;
-  border: 1px solid #00A8C6;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  color: #ffffff;
-  background-color: #00A8C6;
-  text-transform: uppercase;
+  font-size: .75em !important;
 }
 
 .filter:hover {
-  background-color: rgba(37, 244, 154, .75);
-  border-color: rgba(37, 244, 154, .75);
-  color: #ffffff;
+
 }
 
 .filter:focus {
   outline: 0;
 }
 
-.searchFilter {
-  height: 30px;
-  width: 300px;
-  border: 0px;
-  border-bottom: 3px solid black;
-  padding: 0px;
-  margin-top: 10px;
-  text-transform: uppercase;
-  line-height: 1em;
-  font-size: 1.2em;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0);
+.item-content {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+
 }
 
-.searchFilter:focus {
-  outline: 0;
+.moviesView {
+  
+}
+
+.movieList {
+
 }
 
 .movie {
-  display: block;
-  padding-top: 15px;
-  margin-bottom: 10px;
-  overflow: ellipsis;
-  color: lightgray;
+
 }
+
 
 .movieThumb {
-  height: 100px;
+  margin-left: 5px;
+  height: 65px;
+  width: 50px;
   float: left;
 }
 
-.infoOne {
+.movieInfo{
+  line-height: 1.4em;
+  padding-left: 5px !important;
+  width: 120px;
+  font-size: .5em;
+  text-align: left;
   float: left;
-  width: 200px;
-  height: 180px;
-  margin-left: 25px;
-}
-
-.infoTwo{
-  width: 200px;
-  height: 180px;
-  margin-left: 25px;
-  display: inline-block;
 }
 
 .movieTitle {
+  font-size: 1em;
+  text-decoration: underline;
   display: block;
 }
 
@@ -439,35 +351,47 @@ body {
   display: block;
 }
 
-.cast {
-  display: block;
-  overflow: ellipsis;
-}
-
-.actor {
-}
-
-.criticsConsensus {
-  display: block;
-  cursor: pointer;
-}
-
 .runtime {
-  display: block;
-}
-
-.mpaaRating {
-  display: block;
+ display: block;
 }
 
 .synopsis {
-  display: block;
   cursor: pointer;
 }
 
-.movieHR {
-  margin-bottom: 10px;
+.goSeeIt {
+  font-family: 'Avenir-Black' !important;
+  font-size: .6em;
+  line-height: 1.4em;
+  margin-top: 2.5px;
+  padding: 0px !important;
+  display: inline-block;
+  width: 50px;
+  height: 65px;
+  text-transform: uppercase;
 }
+
+.fandangoBuy {
+  font-family: 'Avenir-Black' !important;
+  padding: 0px !important;
+  font-size: .6em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-top: 2.5px;
+  display: inline-block;
+  width: 50px;
+  height: 65px;
+}
+
+.movieHR {
+  margin-bottom: 5px;
+}
+
+.movieOutingsForm {
+  width: 100%;
+  display: block;
+}
+
 
 
 /* outings */
@@ -488,12 +412,28 @@ body {
   padding: 0px;
 }
 
-.movieOutingsForm {
-
+.outingField {
+  width: 100% !important;
 }
 
-.expandMovieOutingsForm {
+.outingsThumbnail {
+  margin-left: 5px;
+  height: 65px;
+  width: 50px;
+  float: left;
+}
 
+.outingDetails {
+  width: 200px;
+  margin-left: 5px;
+  display: inline-block;
+  font-size: .5em;
+  line-height: 1.5em;
+  float: left;
+}
+
+.outingDetail {
+  display: block;
 }
 
 /* footer */

@@ -65,94 +65,41 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
 
     $http.get(query)
     .then(function(data){
-      $rootScope.allMovies = data.data;
+      $rootScope.movies = data.data;
+      $rootScope.allMovies = {};
+      for (var i = 0; i < $rootScope.movies.length; i++) {
+        $rootScope.allMovies[$rootScope.movies[i].title.toUpperCase()] = $rootScope.movies[i];
+      }
       getRTMovies.getMovieData(1, 50)
       .then(function(movies){
+
         var rtMovies = movies;
-        for (var i = 0; i < $rootScope.allMovies.length; i++) {
 
 
-          var movie = $rootScope.allMovies[i];
+        for (var i = 0; i < rtMovies.length; i++) {
 
+          var rtMovie = rtMovies[i];
 
-          // check for movie poster
-          if (!movie.thumbnail) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.thumbnail = rtMovie.posters.thumbnail;
-              }
-            }
-            if (!movie.thumbnail) {
-              movie.thumbnail = 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
-            }
+          if ($rootScope.allMovies[rtMovie.title.toUpperCase()]) {
+
+            var movie = $rootScope.allMovies[rtMovie.title.toUpperCase()];
+
+            movie.thumbnail = rtMovie.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
+            movie.critics_score = rtMovie.ratings.critics_score || 0;
+            movie.audience_score = rtMovie.ratings.audience_score || 0;
+            movie.critics_consensus = rtMovie.critics_consensus;
+            movie.synopsis = rtMovie.synopsis || movie.longDescription || '';
+            movie.runtime = rtMovie.runtime || 0;
           }
+        }
 
-          // critics score
-          if (!movie.audience_score) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.critics_score = rtMovie.ratings.critics_score;
-              }
-            }
-            if (!movie.critics_score) {
-              movie.critics_score = 0;
-            }
-          }
-
-          // audience score
-          if (!movie.audience_score) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.audience_score = rtMovie.ratings.audience_score;
-              }
-            }
-            if (!movie.audience_score) {
-              movie.audience_score = 0;
-            }
-          }
-
-          //critics consensus
-          if (!movie.critics_consensus) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.critics_consensus = rtMovie.critics_consensus;
-              }
-            }
-          }
-
-          //synopsis
-          if (!movie.synopsis) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.synopsis = rtMovie.synopsis;
-              }
-            }
-            if (movie.longDescription) {
-              movie.synopsis = movie.longDescription;
-            } else if(!movie.synopsis && !movie.longDescription) {
-              movie.synopsis = '';
-            }
-          }
-
-          //runtime
-          if (!movie.runtime || movie.runtime === 0) {
-            for (var k = 0; k < rtMovies.length; k++) {
-              var rtMovie = rtMovies[k];
-              if (rtMovies[k].title.toUpperCase() === movie.title.toUpperCase()) {
-                movie.runtime = rtMovie.runtime;
-              }
-            }
-            if (!movie.runtime) {
-              movie.runtime = 0;
-            }
-          }
-
-        } // end of for loop
+        for (var movie in $rootScope.allMovies) {
+          $rootScope.allMovies[movie].thumbnail =  $rootScope.allMovies[movie].thumbnail ? $rootScope.allMovies[movie].thumbnail : 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
+          $rootScope.allMovies[movie].critics_score = $rootScope.allMovies[movie].critics_score ? $rootScope.allMovies[movie].critics_score : 0;
+          $rootScope.allMovies[movie].audience_score = $rootScope.allMovies[movie].audience_score ? $rootScope.allMovies[movie].audience_score : 0;
+          $rootScope.allMovies[movie].synopsis = $rootScope.allMovies[movie].synopsis ? $rootScope.allMovies[movie].synopsis : $rootScope.allMovies[movie].longDescription;
+          $rootScope.allMovies[movie].runtime = $rootScope.allMovies[movie].runtime ? $rootScope.allMovies[movie].runtime : 0;
+        }
 
       });
 
@@ -214,4 +161,25 @@ app.service('getLocation', function($http, $rootScope, $q){
     return deferred.promise;
   };
 
-})
+});
+
+// Notifications service
+app.service('sendAlert', ['$rootScope', '$http', function ($rootScope, $http) {
+  
+  this.email = function(type, movie) {
+    $http({
+      method: 'POST',
+      url: '/sendalert',
+      data: JSON.stringify({
+        type: type,
+        userId: $rootScope.user.facebookId,
+        movie: movie
+      })
+    })
+    .success(function (data) {
+    })
+    .error(function (data, status, headers, config) {
+      console.log('GET Error:', data, status, headers, config);
+    });
+  };
+}]);

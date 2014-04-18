@@ -214,4 +214,25 @@ app.service('getLocation', function($http, $rootScope, $q){
     return deferred.promise;
   };
 
-})
+});
+
+// Notifications service
+app.service('sendAlert', ['$rootScope', '$http', function ($rootScope, $http) {
+  
+  this.email = function(type, movie) {
+    $http({
+      method: 'POST',
+      url: '/sendalert',
+      data: JSON.stringify({
+        type: type,
+        userId: $rootScope.user.facebookId,
+        movie: movie
+      })
+    })
+    .success(function (data) {
+    })
+    .error(function (data, status, headers, config) {
+      console.log('GET Error:', data, status, headers, config);
+    });
+  };
+}]);

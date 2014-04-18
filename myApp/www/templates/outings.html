@@ -1,45 +1,26 @@
 <ion-view title="Outings">
   <ion-side-menus>
     <ion-side-menu-content>
-      <ion-content class="has-header padding">
+      <ion-content class="padding" has-header='true'>
         <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing
         </button>
-        <ion-scroll>
           <ion-list option-buttons="outingButtons">
-              <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
-                <form editable-form name='editableForm' onaftersave="editOuting()">
-                    
-                    MOVIE TITLE:
-                    <span class='movieDetail' editable-select='outing.movie' e-required e-ng-options="movie.title as movie.title for movie in allMovies">
-                    {{outing.movie}}
-                    </span>
-                    <br>
-                    DATE:
-                    <span  class='movieDetail' editable-date='outing.date'>
-                    {{outing.date | date: 'EEE. MMM. d' }}
-                    </span>
-                    <br>
-                    THEATER:
-                    <span  class='movieDetail' editable-text='outing.theater'>
-                    {{outing.theater}}
-                    </span>
-                    <br>
+              <ion-item ng-repeat="outing in outings | orderBy:outing.date" item="outing" can-swipe="true">
+                  <img class='outingsThumbnail' src='{{getMoviePoster(outing.movie)}}'/>
+                  <div class='outingDetails'>
+                    <span class='outingDetail'> MOVIE TITLE: {{outing.movie}}</span>
+                    <span class='outingDetail'> DATE: {{outing.date | date: 'EEE. MMM. d' }}</span>
+                    <span class='outingDetail'> THEATER: {{outing.theater}} </span>
+                    <span class='outingDetail'>
                     ATTENDEES:
-                    <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}}
+                    <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}} </span>
                     </span>
-                    <br>
-                    SHOWTIME:
-                    <span editable-text="outing.showtime" e-name="showtime" class="outingShowtime">{{ outing.showtime }}</span>
-                    <br>
-                    <button type="button" ng-click="editableForm.$show()" ng-show="!editableForm.$visible && showEditButton()" class='button button-small button-calm'>Edit</button>
-                    <span ng-show="editableForm.$visible">
-                      <button type="submit" ng-disabled="editableForm.$waiting" class='button button-balanced'>Save Edit</button>
-                      <button type="button" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" class='button button-assertive'>Cancel Edit</button>
-                    </span>
-                </form>
+                    <span class="outingDetail">SHOWTIME: {{ outing.showtime }}</span>
+
+                  </div>
+                  <button class='button button-energized fandangoBuy' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
               </ion-item>
             </ion-list>
-          </ion-scroll>
       </ion-content>
     </ion-side-menu-content>
     <ion-side-menu side='left'>
@@ -50,16 +31,22 @@
         <br><br>
         <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
           <label class='item'>
-            <select ng-model='form.movie' ng-options="movie.title for movie in allMovies" type='text' class='selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'></select>
+            <select ng-model='form.movie' ng-options="movie.title for (movieTitle, movie) in allMovies" type='text' class='selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'>
+              <option value="" disabled selected>Select A Movie</option>
+            </select>
           </label>
-          <label class='item item-input'>
-            <input ng-model='form.date' type='date'>
+          <label class='item item-input' ng-show='dateFieldDisplay()' >
+            <input ng-model='form.date' type='date' ng-change='showTheaters()'>
           </label>
           <label class='item item-input' ng-show='theaterField()'>
-            <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(form.movie, form.theater)' ></select>
+            <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(form.movie, form.theater)' >
+              <option value="" disabled selected>Select A Theater</option>
+            </select>
           </label>
-          <label class='item item-input'>
-            <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for showtime in showtimes" ></select>
+          <label class='item item-input' ng-show="showtimeField()">
+            <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for (showtime, showtime) in showtimes" >
+              <option value="" disabled selected>Select A Showtime</option>
+            </select>
           </label>
           <button type='submit' class='button button-full button-positive'>Submit</button>
         </form>

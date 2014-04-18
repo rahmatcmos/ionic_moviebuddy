@@ -1,5 +1,5 @@
 
-app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate', function ($scope, $rootScope, $http, $ionicSideMenuDelegate) {
+app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate','sendAlert', function ($scope, $rootScope, $http, $ionicSideMenuDelegate, sendAlert) {
 
   $scope.toggleOutingsForm = false;
 
@@ -27,9 +27,10 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
 
   var theaterField = false;
   var showtimeField = false;
+  var dateField = false;
 
   $scope.theaters = {};
-  $scope.showtimes = [];
+  $scope.showtimes = {};
 
   $scope.theaterField = function(){
     return theaterField;
@@ -39,6 +40,10 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     return showtimeField;
   };
 
+  $scope.dateFieldDisplay = function(){
+    return dateField;
+  };
+
   var showTheaterField = function(){
     theaterField = true;
   };
@@ -46,11 +51,18 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   var showShowtimeField = function(){
     showtimeField = true;
   };
-  
+
+  var showDateField = function(){
+    dateField = true;
+  };
+
+  $scope.showTheaters = function(){
+    showTheaterField();
+  };
 
   $scope.getTheaters = function(movie){
     if (movie.title !== '') {
-      showTheaterField();
+      showDateField();
     }
     $scope.currentMovie = movie;
     for (var k = 0; k < movie.showtimes.length; k++){
@@ -62,25 +74,26 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     if (theater !== '') {
       showShowtimeField();
     }
-    $scope.showtimes = [];
+    $scope.showtimes = {};
     for (var i = 0; i < movie.showtimes.length; i++) {
       var showtime = movie.showtimes[i];
       if ($scope.theaters[showtime.theatre.name]) {
         var time = formatDate(new Date(showtime.dateTime));
-        $scope.showtimes.push(time);
+        $scope.showtimes[time] = time;
       }
     }
   };
 
   var formatDate = function(date){
-    var hr = date.getHours();
+
+    var hour = date.getHours();
     var min = date.getMinutes();
     var ampm = 'AM';
 
-    if (hr > 12) {
-      hr = hr - 12;
+    if (hour > 12) {
+      hour = hour - 12;
       ampm = 'PM';
-    } else if (hr === 12) {
+    } else if (hour === 12) {
       ampm = 'PM';
     }
 
@@ -88,29 +101,24 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       min = '0' + min;
     }
 
-    var time = hr + ':' + min + ampm;
+    var time = hour + ':' + min + ampm;
 
     return time;
   };
 
   $scope.storeCurrent = function(movie) {
-    for (var i = 0; i < $rootScope.allMovies.length; i++) {
-      if (movie === $rootScope.allMovies[i].title) {
-        $scope.currentMovie = $rootScope.allMovies[i];
-      }
-    }
+      $scope.currentMovie = $rootScope.allMovies[movie.toUpperCase()];
   };
 
-  var newOutingButtonVisible = true;
-  var newOutingFormVisible = false;
-
-  // Rewrite using angular.forEach()?
   $scope.clearOutingForm = function() {
     $scope.form.movie = '';
     $scope.form.date = '';
     $scope.form.theater = '';
     $scope.form.showtime = '';
-    // $scope.form.invitees = '';
+
+    theaterField = false;
+    showtimeField = false;
+    dateField = false;
   };
 
   // Function to create new 'outing' object from form and user.
@@ -129,6 +137,9 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     outing.attendees[userId] = { name: userName };
     outing.organizers = {};
     outing.organizers[userId] = { name: userName };
+
+    // sendAlert.email('creationEmail', $scope.currentMovie.title);
+
     return outing;
   };
 
@@ -191,16 +202,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     });
   };
 
-  $scope.showJoinButton = function() {
-    var userId = $rootScope.user.facebookId;
-    for(var attendeeId in this.outing.attendees) {
-      if(Number(attendeeId) === Number(userId)) {
-        return false;
-      }
-    }
-    return true;
-  };
-
   $scope.joinOuting = function(outing) {
 
     var userId = $rootScope.user.facebookId;
@@ -217,7 +218,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       data: outing
     })
     .success(function(data) {
-      console.log('PUT Success:', data);
+      // sendAlert.email('joinEmail', $scope.currentMovie.title);
       $scope.getOutings();
     })
     .error(function(data, status, headers, config) {
@@ -225,28 +226,22 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     });
   };
 
-  $scope.showEditButton = function() {
-    var userId = $rootScope.user.facebookId;
-    var outing = this.outing;
-
-    for (var organizerId in outing.organizers) {
-      if (Number(organizerId) === Number(userId)) {
-        return true;
-      }
-    }
-
-    return false;
+  $scope.getMoviePoster = function(movie) {
+    if (!$rootScope.allMovies) {return;}
+    return $rootScope.allMovies[movie.toUpperCase()].thumbnail;
   };
 
-  $scope.editOuting = function() {
-    var outing = this.outing;
-    var outingId = this.outing._id;
-
-    $http({
-      method: 'PUT',
-      url: '/api/outings/' + outingId,
-      data: outing
-    });
+  $scope.goTo = function(movie, showtime) {
+    console.log(movie, showtime);
+    var sTimes = $rootScope.allMovies[movie.toUpperCase()];
+    for (var i = 0; i < sTimes.showtimes.length; i++) {
+      var formattedTime = formatDate(new Date(sTimes.showtimes[i].dateTime));
+      var sTime = sTimes.showtimes[i];
+      if (showtime === formattedTime) {
+        if (!sTime.ticketURI) {return;}
+        window.open(sTime.ticketURI);
+      }
+    }
   };
 
   $scope.getOutings(); // Initialize display of outings.

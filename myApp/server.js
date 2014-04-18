@@ -52,6 +52,8 @@ app.get('/auth/facebook/callback',function(req, res, next){
 
 app.get('/auth/isLoggedIn', isLoggedIn);
 
+app.post('/sendalert', handler.sendAlert);
+
 app.get('/logout', handler.logout);
 
 // redirect any other funky request to the home page
