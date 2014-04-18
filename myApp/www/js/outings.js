@@ -21,6 +21,11 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
      }
   ];
 
+  $scope.movies = [];
+  for (var movie in $rootScope.allMovies) {
+    $scope.movies.push($rootScope.allMovies[movie]);
+  }
+
   $scope.toggleLeft = function(){
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -195,6 +200,9 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       url: '/api/outings'
     })
     .success(function(data) {
+      data = data.sort(function(a,b){
+        return a.date - b.date;
+      });
       $rootScope.outings = data;
     })
     .error(function(data, status, headers, config) {
@@ -229,7 +237,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   $scope.getMoviePoster = function(movie) {
     if (!$rootScope.allMovies) {return;}
     return $rootScope.allMovies[movie.toUpperCase()].thumbnail;
-  };
+  };  
 
   $scope.goTo = function(movie, showtime) {
     var sTimes = $rootScope.allMovies[movie.toUpperCase()];
@@ -237,10 +245,15 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       var formattedTime = formatDate(new Date(sTimes.showtimes[i].dateTime));
       var sTime = sTimes.showtimes[i];
       if (showtime === formattedTime) {
-        if (!sTime.ticketURI) {return;}
+        if (!sTime.ticketURI) { sTime.ticketURI = 'http://www.fandango.com'}
         window.open(sTime.ticketURI);
       }
     }
+  };
+
+  $scope.getTicket = function(movie, uri) {
+    uri = uri || movie.showtimes[0].ticketURI;
+    window.open(uri);
   };
 
   $scope.getOutings(); // Initialize display of outings.

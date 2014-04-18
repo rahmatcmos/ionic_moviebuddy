@@ -424,7 +424,7 @@ body {
 }
 
 .outingDetails {
-  width: 200px;
+  width: 150px;
   margin-left: 5px;
   font-size: .5em;
   line-height: 1.5em;
@@ -437,14 +437,13 @@ body {
 
 .fandangoBuyOuting {
   font-family: 'Avenir-Black' !important;
-  padding: 5px;
   font-size: .6em;
   line-height: 1.4em;
-  text-transform: uppercase;
-  text-align: center;
   margin-top: 2.5px;
+  padding: 0px !important;
   display: inline-block;
   height: 65px;
+  text-transform: uppercase;
 }
 
 /* footer */

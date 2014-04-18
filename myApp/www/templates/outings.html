@@ -1,25 +1,27 @@
 <ion-view title="Outings">
   <ion-side-menus>
     <ion-side-menu-content>
-      <ion-content class="padding" has-header='true'>
+      <ion-content has-header='true'>
         <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing</button>
         
           <ion-list option-buttons="outingButtons">
-              <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
-                  <img class='outingsThumbnail' src='{{getMoviePoster(outing.movie)}}'/>
-                  <div class='outingDetails'>
-                    <span class='outingDetail'> MOVIE TITLE: {{outing.movie}}</span>
+              <div style="text-align: center" ng-repeat="outing in outings" item="outing" can-swipe="true" class='card'>
+                <div class='item item-divider'>
+                  <h2> Watch <u>{{outing.movie}}</u> with <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}} </span></h2>
+                </div>
+                <div class='item item-body'>
+                  <img class='movieThumb' src='{{getMoviePoster(outing.movie)}}'/>
+                  <p>
                     <span class='outingDetail'> DATE: {{outing.date | date: 'EEE. MMM. d' }}</span>
                     <span class='outingDetail'> THEATER: {{outing.theater}} </span>
-                    <span class='outingDetail'>
-                    ATTENDEES:
-                    <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}} </span>
-                    </span>
                     <span class="outingDetail">SHOWTIME: {{ outing.showtime }}</span>
-
-                  </div>
-                  <button class='button button-energized fandangoBuyOuting' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
-              </ion-item>
+                  </p>
+                </div>
+                <div class='item'>
+                  <button class='button button-outline button-energized' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
+                </div>                  
+            
+              </div>
             </ion-list>
       </ion-content>
     </ion-side-menu-content>

@@ -66,7 +66,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'movies' : {
           templateUrl: 'templates/movies.html',
-          controller: 'MoviesController'
+          controller: 'OutingsController'
         }
       },
       resolve: {

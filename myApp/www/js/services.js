@@ -100,8 +100,6 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
           $rootScope.allMovies[movie].runtime = $rootScope.allMovies[movie].runtime ? $rootScope.allMovies[movie].runtime : 0;
         }
 
-        console.log($rootScope.allMovies);
-
       });
 
     });
@@ -161,6 +159,11 @@ app.service('getLocation', function($http, $rootScope, $q){
 
     return deferred.promise;
   };
+
+});
+
+//Outings service
+app.service('outings', function($scope, $rootScope, $http){
 
 });
 

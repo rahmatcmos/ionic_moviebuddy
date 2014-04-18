@@ -15,7 +15,7 @@
                   item="movie"
                   item-type="button-postive"
                   can-swipe="true">
-          <img class='movieThumb' src="{{movie.thumbnail}}"></img>
+          <img class='movieThumb' src="{{movie.thumbnail}}">
           <div class='movieInfo'>
             <span class='movieTitle' >{{movie.title}}</span>
             <span class='criticsScore'>
@@ -26,36 +26,39 @@
             <span>
             <span class='runtime'>Runtime: {{movie.runtime = movie.runtime ? movie.runtime : 0}} min. </span>
             <span class='synopsis'>Synopsis:
-            <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
-              {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span></span>
+              <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
+                {{movie.synopsis | limitTo:textLimit}}{{moreText}} 
+              </span>
+            </span>
           </div>
 
           <div class="expandMovieOutingsForm" ng-controller='OutingsController'>
+
             <button class='button button-positive goSeeIt' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+
             <button class='button button-energized fandangoBuy' ng-click="goTo(movie)">Buy A Ticket</button>
          
             <div class="movieOutingsForm" ng-show='toggleOutingsForm'>
               <br>
               <h2>Create An Outing:</h2>
-              <hr>
 
-              <form name="outingForm">
-                <div>
-                  1. Select A Date:
+              <div class='list' >
+                <label class='item item-input item-stacked-label'>
+                  <span class='input-label'>1. Select A Date:</span>
                   <input class="outingField" ng-model="form.date" name="date" type="date"  ng-change='getTheaters(currentMovie); showTheaters()'>
-                </div>
-                <div ng-show="theaterField()">
-                  2. Select a Theater
+                </label>
+                <label class='item item-input item-stacked-label' ng-show="theaterField()">
+                 <span class='input-label'> 2. Select a Theater</span>
                   <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(currentMovie, form.theater)' ></select>
-                </div>
-                <div ng-show="showtimeField()">
-                  3. Select a Showtime
+                </label>
+                <label class='item item-input item-stacked-label' ng-show="showtimeField()">
+                  <span class='input-label'>3. Select a Showtime</span>
                   <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for (showtime, showtime) in showtimes"></select>
-                </div>
+                </label>
                 <br>
                 <button type="submit" ng-click='processOutingForm()' class="button button-small button-light">Create Outing</button>
                 <button class='button button-small button-light' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
-              </form>
+              </div>
 
             </div>
           </div>

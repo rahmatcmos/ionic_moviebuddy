@@ -75,7 +75,6 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
 
         var rtMovies = movies;
 
-
         for (var i = 0; i < rtMovies.length; i++) {
 
           var rtMovie = rtMovies[i];
@@ -84,7 +83,7 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
 
             var movie = $rootScope.allMovies[rtMovie.title.toUpperCase()];
 
-            movie.thumbnail = rtMovie.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
+            movie.thumbnail = rtMovie.posters.detailed || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
             movie.critics_score = rtMovie.ratings.critics_score || 0;
             movie.audience_score = rtMovie.ratings.audience_score || 0;
             movie.critics_consensus = rtMovie.critics_consensus;
@@ -101,10 +100,13 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
           $rootScope.allMovies[movie].runtime = $rootScope.allMovies[movie].runtime ? $rootScope.allMovies[movie].runtime : 0;
         }
 
+        console.log($rootScope.allMovies);
+
       });
 
     });
   };
+
 
 }]);
 

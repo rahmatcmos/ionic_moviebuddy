@@ -303,8 +303,6 @@ body {
 }
 
 .item-content {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
 
 }
 
@@ -323,9 +321,8 @@ body {
 
 .movieThumb {
   margin-left: 5px;
-  height: 65px;
-  width: 50px;
-  float: left;
+  height: 100px;
+  width: 70px;
 }
 
 .movieInfo{
