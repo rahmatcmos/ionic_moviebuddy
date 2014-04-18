@@ -107,11 +107,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   };
 
   $scope.storeCurrent = function(movie) {
-    for (var i = 0; i < $rootScope.allMovies.length; i++) {
-      if (movie === $rootScope.allMovies[i].title) {
-        $scope.currentMovie = $rootScope.allMovies[i];
-      }
-    }
+      $scope.currentMovie = $rootScope.allMovies[movie.toUpperCase()];
   };
 
   $scope.clearOutingForm = function() {
@@ -231,10 +227,18 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   };
 
   $scope.getMoviePoster = function(movie) {
-    if (!movie) { return; }
-    for (var i = 0; i < $rootScope.allMovies.length; i++) {
-      if (movie === $rootScope.allMovies[i].title) {
-        return $rootScope.allMovies[i].thumbnail;
+    if (!$rootScope.allMovies) {return;}
+    return $rootScope.allMovies[movie.toUpperCase()].thumbnail;
+  };
+
+  $scope.goTo = function(movie, showtime) {
+    var sTimes = $rootScope.allMovies[movie.toUpperCase()];
+    for (var i = 0; i < sTimes.showtimes.length; i++) {
+      var formattedTime = formatDate(new Date(sTimes.showtimes[i].dateTime));
+      var sTime = sTimes.showtimes[i];
+      if (showtime === formattedTime) {
+        if (!sTime.ticketURI) {return;}
+        window.open(sTime.ticketURI);
       }
     }
   };

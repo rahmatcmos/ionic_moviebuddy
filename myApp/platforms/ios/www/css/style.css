@@ -424,14 +424,27 @@ body {
 }
 
 .outingDetails {
+  width: 200px;
   margin-left: 5px;
-  display: inline-block;
   font-size: .5em;
   line-height: 1.5em;
+  float: left;
 }
 
 .outingDetail {
   display: block;
+}
+
+.fandangoBuyOuting {
+  font-family: 'Avenir-Black' !important;
+  padding: 5px;
+  font-size: .6em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2.5px;
+  display: inline-block;
+  height: 65px;
 }
 
 /* footer */

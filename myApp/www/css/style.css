@@ -424,9 +424,8 @@ body {
 }
 
 .outingDetails {
-  width: 200px;
+  width: 150px;
   margin-left: 5px;
-  display: inline-block;
   font-size: .5em;
   line-height: 1.5em;
   float: left;
@@ -434,6 +433,17 @@ body {
 
 .outingDetail {
   display: block;
+}
+
+.fandangoBuyOuting {
+  font-family: 'Avenir-Black' !important;
+  font-size: .6em;
+  line-height: 1.4em;
+  margin-top: 2.5px;
+  padding: 0px !important;
+  display: inline-block;
+  height: 65px;
+  text-transform: uppercase;
 }
 
 /* footer */

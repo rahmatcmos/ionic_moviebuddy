@@ -5,7 +5,7 @@
         <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing
         </button>
           <ion-list option-buttons="outingButtons">
-              <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
+              <ion-item ng-repeat="outing in outings | orderBy:outing.date" item="outing" can-swipe="true">
                   <img class='outingsThumbnail' src='{{getMoviePoster(outing.movie)}}'/>
                   <div class='outingDetails'>
                     <span class='outingDetail'> MOVIE TITLE: {{outing.movie}}</span>
@@ -18,6 +18,7 @@
                     <span class="outingDetail">SHOWTIME: {{ outing.showtime }}</span>
 
                   </div>
+                  <button class='button button-energized fandangoBuyOuting' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
               </ion-item>
             </ion-list>
       </ion-content>
@@ -30,7 +31,7 @@
         <br><br>
         <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
           <label class='item'>
-            <select ng-model='form.movie' ng-options="movie.title for movie in allMovies" type='text' class='selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'>
+            <select ng-model='form.movie' ng-options="movie.title for (movieTitle, movie) in allMovies" type='text' class='selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'>
               <option value="" disabled selected>Select A Movie</option>
             </select>
           </label>

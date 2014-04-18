@@ -232,7 +232,6 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   };
 
   $scope.goTo = function(movie, showtime) {
-    console.log(movie, showtime);
     var sTimes = $rootScope.allMovies[movie.toUpperCase()];
     for (var i = 0; i < sTimes.showtimes.length; i++) {
       var formattedTime = formatDate(new Date(sTimes.showtimes[i].dateTime));

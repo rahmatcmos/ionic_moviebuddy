@@ -2,8 +2,8 @@
   <ion-side-menus>
     <ion-side-menu-content>
       <ion-content class="padding" has-header='true'>
-        <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing
-        </button>
+        <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing</button>
+        
           <ion-list option-buttons="outingButtons">
               <ion-item ng-repeat="outing in outings | orderBy:outing.date" item="outing" can-swipe="true">
                   <img class='outingsThumbnail' src='{{getMoviePoster(outing.movie)}}'/>
@@ -18,7 +18,7 @@
                     <span class="outingDetail">SHOWTIME: {{ outing.showtime }}</span>
 
                   </div>
-                  <button class='button button-energized fandangoBuy' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
+                  <button class='button button-energized fandangoBuyOuting' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
               </ion-item>
             </ion-list>
       </ion-content>

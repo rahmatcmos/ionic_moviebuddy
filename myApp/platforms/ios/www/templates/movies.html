@@ -10,7 +10,7 @@
     </ion-header-bar>
     <br><br>
       <ion-list class='movieList' option-buttons="movieButtons" class="has-headers padding">
-        <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
+        <ion-item style="text-align: center" ng-repeat="(movieTitle, movie) in allMovies | filter:search:strict | orderBy:category:reverse" 
                   class="item-text-wrap movie" 
                   item="movie"
                   item-type="button-postive"
@@ -32,7 +32,7 @@
 
           <div class="expandMovieOutingsForm" ng-controller='OutingsController'>
             <button class='button button-positive goSeeIt' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
-            <button class='button button-energized fandangoBuy' ng-click="">Buy A Ticket</button>
+            <button class='button button-energized fandangoBuy' ng-click="goTo(movie)">Buy A Ticket</button>
          
             <div class="movieOutingsForm" ng-show='toggleOutingsForm'>
               <br>
