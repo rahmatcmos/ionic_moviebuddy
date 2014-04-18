@@ -5,7 +5,7 @@
         <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing</button>
         
           <ion-list option-buttons="outingButtons">
-              <ion-item ng-repeat="outing in outings | orderBy:outing.date" item="outing" can-swipe="true">
+              <ion-item ng-repeat="outing in outings" item="outing" can-swipe="true">
                   <img class='outingsThumbnail' src='{{getMoviePoster(outing.movie)}}'/>
                   <div class='outingDetails'>
                     <span class='outingDetail'> MOVIE TITLE: {{outing.movie}}</span>

@@ -15,7 +15,7 @@
                   item="movie"
                   item-type="button-postive"
                   can-swipe="true">
-          <img class='movieThumb' src="{{movie.thumbnail}}"></img>
+          <img class='movieThumb' src="{{movie.thumbnail}}">
           <div class='movieInfo'>
             <span class='movieTitle' >{{movie.title}}</span>
             <span class='criticsScore'>
@@ -26,12 +26,16 @@
             <span>
             <span class='runtime'>Runtime: {{movie.runtime = movie.runtime ? movie.runtime : 0}} min. </span>
             <span class='synopsis'>Synopsis:
-            <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
-              {{movie.synopsis | limitTo:textLimit}}{{moreText}} </span></span>
+              <span ng-controller="MovieInfoController" ng-click="toggleText(movie.synopsis)">
+                {{movie.synopsis | limitTo:textLimit}}{{moreText}} 
+              </span>
+            </span>
           </div>
 
           <div class="expandMovieOutingsForm" ng-controller='OutingsController'>
+
             <button class='button button-positive goSeeIt' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+
             <button class='button button-energized fandangoBuy' ng-click="goTo(movie)">Buy A Ticket</button>
          
             <div class="movieOutingsForm" ng-show='toggleOutingsForm'>
