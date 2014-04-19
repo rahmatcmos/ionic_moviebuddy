@@ -220,8 +220,10 @@ body {
   text-align: center;
 }
 
-.userDetail {
-
+.userDetailFont {
+  font-family: 'helvetica';
+  line-height: 0px;
+  color: black;
 }
 
 .editableUserDetail {
@@ -230,6 +232,7 @@ body {
 
 /* css override of xeditable angular */
 .editable-controls {
+
 }
 
 .editable-input {

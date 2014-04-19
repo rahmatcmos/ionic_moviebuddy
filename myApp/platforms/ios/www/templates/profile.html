@@ -1,46 +1,83 @@
 <ion-view title='profile'>
-  <ion-content class="has-header padding">
-
-      <div id="profilePicDiv">
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-content class='helvetica padding' has-header='true'>
+      <div class='item item-thumbnail item-button-right'>
         <img id="profilePic" src='http://graph.facebook.com/{{user.facebookId}}/picture?type=large'></img>
+        <button class='button button-clear' ng-click='toggleRight()'>
+          <i class='icon positive ion-android-settings'></i>
+        </button>
       </div>
 
-      <div class="list">
-        <span class="item item-icon-right">
+      <div class="userDetailFont list">
+        <span class="userDetailFont item">
           <u>Name:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.name'>{{user.name || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica' >{{user.name}}</i></span>
           
         </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Age:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.age'>{{user.age || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica'>{{user.age}}</i></span>
           
         </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Current City:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.city'>{{user.city || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica'>{{user.city}}</i></span>
           
         </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Favorite Movie:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.favMovie'>{{user.favMovie || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica'>{{user.favMovie}}</i></span>
           
         </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Favorite Genre:</u>
-         <span  class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.favGenre'>{{user.favGenre || 'update'}}<i class="icon ion-gear-a"></i></span>
+         <span  class='userDetailFont helvetica'>{{user.favGenre}}</i></span>
          
        </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Favorite Theater:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.favTheater'>{{user.favTheater || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica'>{{user.favTheater}}</i></span>
           
         </span>
-        <span class="item item-icon-right">
+        <span class="userDetailFont item">
           <u>Favorite Actor:</u> 
-          <span class='helvetica editableUserDetail' onaftersave='updateUser()' editable-text='user.favActor'>{{user.favActor || 'update'}}<i class="icon ion-gear-a"></i></span>
+          <span class='userDetailFont helvetica'>{{user.favActor}}</i></span>
 
         </span>
       </div>
-  </ion-content>
+      </ion-content>
+    </ion-side-menu-content>
+    <ion-side-menu side='right'>
+      <ion-content>
+        <ion-header-bar class='helvetica bar'>
+          <h1 class='helvetica title'>Edit Settings</h1>
+        </ion-header-bar>
+        <div class="list has-header">
+          <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model='user.name'>
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Age" ng-model='user.age'>
+          </label>
+           <label class="item item-input">
+            <input type="text" placeholder="Current City" ng-model='user.city'>
+          </label>
+           <label class="item item-input">
+            <input type="text" placeholder="Favorite Movie" ng-model='user.favMovie'>
+          </label>
+           <label class="item item-input">
+            <input type="text" placeholder="Favorite Genre" ng-model='user.favGenre'>
+          </label>
+           <label class="item item-input">
+            <input type="text" placeholder="Favorite Theatre" ng-model='user.favTheater'>
+          </label>
+           <label class="item item-input">
+            <input type="text" placeholder="Favorite Actor" ng-model='user.favActor'>
+          </label>
+          <button ng-click='updateUser()' class='helvetica button button-full button-positive'>Submit Changes</button>
+        </div>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
 </ion-view>

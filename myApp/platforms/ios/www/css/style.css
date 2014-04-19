@@ -184,6 +184,14 @@ body {
   outline: 0;
 }
 
+.loginButton {
+
+}
+
+.loginAnchor {
+  text-decoration: none;
+}
+
 .loginFooter {
 
 }
@@ -212,20 +220,19 @@ body {
   text-align: center;
 }
 
-.userDetail {
+.userDetailFont {
+  font-family: 'helvetica';
+  line-height: 0px;
   color: black;
-  border: 0px;
-  line-height: 2.5em;
-  display: block;
 }
 
 .editableUserDetail {
-  color: black;
   border: 0px;
 }
 
 /* css override of xeditable angular */
 .editable-controls {
+
 }
 
 .editable-input {
