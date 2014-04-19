@@ -1,49 +1,5 @@
 /* Empty. Add your own CSS if you like */
 
-.login-page {
-  background-color: #9DE0AD;
-}
-
-.login-button {
-  margin: auto auto;
-  border-radius: 5px;
-  display: block;
-}
-
-.dash-page {
-	background-color: #9DE0AD;
-}
-
-/* Space out content a bit */
-
-/* web fonts */
-
-@font-face {
-    font-family: 'bebasregular';
-    src: url('../fonts/Bebas/bebas___-webfont.eot');
-    src: url('../fonts/Bebas/bebas___-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Bebas/bebas___-webfont.woff') format('woff'),
-         url('../fonts/Bebas/bebas___-webfont.ttf') format('truetype'),
-         url('../fonts/Bebas/bebas___-webfont.svg#bebasregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-  font-family: 'glyphicons';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.svg'),
-       url('../fonts/glyphicons-halflings-regular.ttf'),
-       url('../fonts/glyphicons-halflings-regular.woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Avenir-Black';
-  src: url('../fonts/Avenir_LT_95_Black.ttf');
-}
-
 /* Google Fonts
 font-family: 'Inder', sans-serif;
 font-family: 'Viga', sans-serif;
@@ -108,8 +64,27 @@ body {
   border: 0px !important;
 }
 
-.appHeader {
+.appTitle {
+  font-size: 3.5em;
+  text-align: center;
+  font-family: 'Helvetica';
+}
 
+.appSubTitle {
+  font-family: 'Hammersmith One', sans-serif;
+  text-align: center;
+}
+
+.logoRow {
+  margin-top: 5px;
+  height: 10px;
+}
+
+.logoCol {
+  background-color: #333;
+  border-radius: 50%;
+  height: 5px;
+  width: 5px;
 }
 
 .logoutButton {
@@ -143,57 +118,20 @@ body {
 
 /* login fun */
 
-.loginContainer {
+.login-page {
 
 }
 
-.loginHeaderDiv {
-
+.login-item {
+  padding: 0px;
 }
 
-.loginHeader {
-
-}
-
-.loginHeaderTwo {
-
-}
-
-.logoDiv {
-
-}
-
-.logo {
-
-}
-
-.loginDiv {
-
-}
-
-.fbLogin {
-  height: 80px;
-  width: 400px;
-  border: 0px;
-  background: url('../images/fblogin.png');
-  background-position: center;
-  cursor: pointer;
-}
-
-.fbLogin:focus {
-  outline: 0;
-}
-
-.loginButton {
-
+.login-button {
+  border-radius: 10px;
 }
 
 .loginAnchor {
   text-decoration: none;
-}
-
-.loginFooter {
-
 }
 
 /* Profile Fun */
