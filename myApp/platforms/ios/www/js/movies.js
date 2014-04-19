@@ -11,11 +11,6 @@ app.controller('MoviesController', function ($scope, $http) {
      }
   ];
 
-  $scope.goTo = function(movie, url) {
-    var url = url || movie.showtimes[0].ticketURI;
-    window.open(url);
-  };
-
 });
 
 

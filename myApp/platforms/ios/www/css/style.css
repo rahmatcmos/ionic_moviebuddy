@@ -66,12 +66,46 @@ html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h
 }
 
 html {
+
 }
 
 body {
   font-family: 'Avenir-Black';
-  color: #333 !important;
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+.helvetica {
+  font-family: 'Helvetica' !important;
+  text-transform: capitalize;
+}
+
+.scroll-content {
+  
+}
+
+.list {
+  background-color: transparent;
+}
+
+.item {
+  border: 0px;
+}
+
+.card {
+  border: 0px;
+}
+
+.bar {
+  border: 0px !important;
+  background-color: transparent;
+}
+
+.bar-header {
+  border: 0px !important;
+}
+
+.has-header {
+  border: 0px !important;
 }
 
 .appHeader {
@@ -178,10 +212,6 @@ body {
   text-align: center;
 }
 
-#userMovieDetails {
-  text-align: center;
-}
-
 .userDetail {
   color: black;
   border: 0px;
@@ -199,13 +229,7 @@ body {
 }
 
 .editable-input {
-  border: 0px;
-  border-bottom: 1px solid #333;
-  height: 20px;
-  width: 300px !important;
-  background-color: #FFFFFF;
-  font-family: 'Hammersmith One', sans-serif;
-  text-transform: uppercase;
+
 }
 
 .editable-input:focus {
@@ -262,26 +286,6 @@ body {
   display: block;
 }
 
-.animate-show.ng-hide-add, 
-.animate-show.ng-hide-remove {
-  -webkit-transition:all linear 0.5s;
-  -moz-transition:all linear 0.5s;
-  -o-transition:all linear 0.5s;
-  transition:all linear 0.5s;
-}
-
-.animate-show.ng-hide-add.ng-hide-add-active,
-.animate-show.ng-hide-remove {
-  line-height:0;
-  opacity:0;
-}
-
-.animate-show.ng-hide-add,
-.animate-show.ng-hide-remove.ng-hide-remove-active {
-  line-height:20px;
-  opacity:1;
-}
-
 
 /* movies */
 
@@ -302,43 +306,32 @@ body {
   outline: 0;
 }
 
-.item-content {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-
+.movieCard {
+  padding: 0px !important;
+  font-family: 'Helvetica';
 }
 
-.moviesView {
-  
+.movieItem {
+  padding: 0px;
 }
-
-.movieList {
-
-}
-
-.movie {
-
-}
-
 
 .movieThumb {
-  margin-left: 5px;
-  height: 65px;
-  width: 50px;
+  height: 150px;
+  width: 100px;
   float: left;
 }
 
 .movieInfo{
-  line-height: 1.4em;
+  line-height: 20px;
   padding-left: 5px !important;
-  width: 120px;
-  font-size: .5em;
+  font-size: 12px;
+  width: 200px;
   text-align: left;
   float: left;
 }
 
 .movieTitle {
-  font-size: 1em;
+  font-size: 5px;
   text-decoration: underline;
   display: block;
 }
@@ -352,35 +345,11 @@ body {
 }
 
 .runtime {
- display: block;
+  display: block;
 }
 
 .synopsis {
   cursor: pointer;
-}
-
-.goSeeIt {
-  font-family: 'Avenir-Black' !important;
-  font-size: .6em;
-  line-height: 1.4em;
-  margin-top: 2.5px;
-  padding: 0px !important;
-  display: inline-block;
-  width: 50px;
-  height: 65px;
-  text-transform: uppercase;
-}
-
-.fandangoBuy {
-  font-family: 'Avenir-Black' !important;
-  padding: 0px !important;
-  font-size: .6em;
-  line-height: 1.4em;
-  text-transform: uppercase;
-  margin-top: 2.5px;
-  display: inline-block;
-  width: 50px;
-  height: 65px;
 }
 
 .movieHR {
@@ -401,9 +370,7 @@ body {
 }
 
 .outingsSectionHeader {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #00A8C6;
+
 }
 
 .selectMovie {
@@ -412,15 +379,22 @@ body {
   padding: 0px;
 }
 
+.outingItemBody {
+  padding-top: 1px;
+  padding-bottom: 0px;
+}
+
 .outingField {
   width: 100% !important;
 }
 
-.outingsThumbnail {
-  margin-left: 5px;
-  height: 65px;
-  width: 50px;
-  float: left;
+.outingMovieTitle {
+
+}
+
+.outingMovieThumb {
+  height: 260px;
+  width: 180px;
 }
 
 .outingDetails {
@@ -433,17 +407,6 @@ body {
 
 .outingDetail {
   display: block;
-}
-
-.fandangoBuyOuting {
-  font-family: 'Avenir-Black' !important;
-  font-size: .6em;
-  line-height: 1.4em;
-  margin-top: 2.5px;
-  padding: 0px !important;
-  display: inline-block;
-  height: 65px;
-  text-transform: uppercase;
 }
 
 /* footer */

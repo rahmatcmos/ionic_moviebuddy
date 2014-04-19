@@ -1,24 +1,26 @@
 <ion-view title="Outings">
   <ion-side-menus>
     <ion-side-menu-content>
-      <ion-content has-header='true'>
-        <button ng-click='toggleLeft()' class='button button-energized button-full'>Create Outing</button>
+      <ion-content class='helvetica padding' has-header='true'>
+        <button ng-click='toggleLeft()' class='helvetica button button-outline button-energized button-block'>Create Outing</button>
         
           <ion-list option-buttons="outingButtons">
-              <div style="text-align: center" ng-repeat="outing in outings" item="outing" can-swipe="true" class='card'>
-                <div class='item item-divider'>
-                  <h2> Watch <u>{{outing.movie}}</u> with <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}} </span></h2>
+              <div style="text-align: center" ng-repeat="outing in outings" item="outing" can-swipe="true" class='helvetica card'>
+                <div class='item item-body outingItemBody'>
+                  <div class='helvetica outingMovieTitle'> Watch <u>{{outing.movie}}</u> with <span ng-repeat="(attendeeId, attendee) in outing.attendees">{{attendee.name}} </span>
+                  </div>
                 </div>
-                <div class='item item-body'>
-                  <img class='movieThumb' src='{{getMoviePoster(outing.movie)}}'/>
+                <div class='helvetica item item-body'>
+                  <img class='helvetica outingMovieThumb' src='{{getMoviePoster(outing.movie)}}'/>
                   <p>
-                    <span class='outingDetail'> DATE: {{outing.date | date: 'EEE. MMM. d' }}</span>
-                    <span class='outingDetail'> THEATER: {{outing.theater}} </span>
-                    <span class="outingDetail">SHOWTIME: {{ outing.showtime }}</span>
+                    <span class='helvetica outingDetail'> Date: {{outing.date | date: 'EEE. MMM. d' }}</span>
+                    <span class='helvetica outingDetail'> Theater: {{outing.theater}} </span>
+                    <span class='helvetica outingDetail'>
+                    <span class="outingDetail">Showtime: {{ outing.showtime }}</span>
                   </p>
                 </div>
-                <div class='item'>
-                  <button class='button button-outline button-energized' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
+                <div class='helvetica item'>
+                  <button class='helvetica button button-outline button-energized' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
                 </div>                  
             
               </div>
@@ -27,30 +29,30 @@
     </ion-side-menu-content>
     <ion-side-menu side='left'>
       <ion-content>
-        <ion-header-bar class='bar-energized'>
-          <h1 class='title'>New Outing</h1>
+        <ion-header-bar class='helvetica bar'>
+          <h1 class='helvetica title energized'>New Outing</h1>
         </ion-header-bar>
         <br><br>
         <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
-          <label class='item'>
-            <select ng-model='form.movie' ng-options="movie.title for (movieTitle, movie) in allMovies" type='text' class='selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'>
+          <label class='helvetica item'>
+            <select ng-model='form.movie' ng-options="movie.title for (movieTitle, movie) in allMovies" type='text' class='helvetica selectMovie' placeholder='Movie' ng-change='getTheaters(form.movie)'>
               <option value="" disabled selected>Select A Movie</option>
             </select>
           </label>
-          <label class='item item-input' ng-show='dateFieldDisplay()' >
+          <label class='helvetica item item-input' ng-show='dateFieldDisplay()' >
             <input ng-model='form.date' type='date' ng-change='showTheaters()'>
           </label>
-          <label class='item item-input' ng-show='theaterField()'>
+          <label class='helvetica item item-input' ng-show='theaterField()'>
             <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(form.movie, form.theater)' >
               <option value="" disabled selected>Select A Theater</option>
             </select>
           </label>
-          <label class='item item-input' ng-show="showtimeField()">
+          <label class='helvetica item item-input' ng-show="showtimeField()">
             <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField" ng-options="showtime for (showtime, showtime) in showtimes" >
               <option value="" disabled selected>Select A Showtime</option>
             </select>
           </label>
-          <button type='submit' class='button button-full button-positive'>Submit</button>
+          <button type='submit' class='helvetica button button-full button-positive'>Submit</button>
         </form>
       </ion-content>
     </ion-side-menu>

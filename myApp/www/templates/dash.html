@@ -1,19 +1,17 @@
 
 <!-- Header Bar -->
-<ion-header-bar align-title="center" type='bar-frosted' frosted-bar>
+<ion-header-bar align-title="center" class='bar-positive' >
   <!-- Title -->
   <h1 class="title">MovieBuddy</h1>
   <!-- Logout Button -->
-  <div class="buttons">
-    <a class="button button-clear"  href="/logout">Logout</a>
-  </div>
+  <a class="button button-clear icon ion-log-out"  ng-href="/logout"></a>
 </ion-header-bar>
 
 <!-- Tabs -->
-<ion-tabs class="tabs-icon-top">
+<ion-tabs class="tabs-icon-top tabs-positive">
 
   <!-- Dash Tab -->
-  <ion-tab title="Outings" icon="ion-android-friends" ui-sref="dash.outings">
+  <ion-tab title="Outings" icon="ion-calendar" ui-sref="dash.outings">
     <ion-nav-view name="outings" class="slide-left-right-ios7"></ion-nav-view>
   </ion-tab>
 
