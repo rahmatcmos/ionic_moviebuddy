@@ -47,7 +47,7 @@ app.service('getRTMovies', ['$http','$q', function ($http, $q) {
   };
 }]);
 
-app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($http, $rootScope, getRTMovies){
+app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies','$state', function ($http, $rootScope, getRTMovies, $state){
 
 
   var date = new Date();
@@ -99,7 +99,7 @@ app.service('getTheaterData', ['$http', '$rootScope', 'getRTMovies', function ($
           $rootScope.allMovies[movie].synopsis = $rootScope.allMovies[movie].synopsis ? $rootScope.allMovies[movie].synopsis : $rootScope.allMovies[movie].longDescription;
           $rootScope.allMovies[movie].runtime = $rootScope.allMovies[movie].runtime ? $rootScope.allMovies[movie].runtime : 0;
         }
-
+        $state.go('dash.outings');
       });
 
     });

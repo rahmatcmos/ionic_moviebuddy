@@ -29,6 +29,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
     })
+    .state('loading', {
+      url: '/loading',
+      templateUrl: 'templates/loading.html',
+      controller: 'LoadingController'
+    })
     .state('dash', {
       url: '/dash',
       abstract: true,
@@ -36,12 +41,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       resolve: {
         isLoggedIn: function(authentication) {
           return authentication.auth();
-        },
-        getZipandMovies: function($rootScope, getLocation, getTheaterData) {
-          getLocation.getZip()
-          .then(function(){
-            getTheaterData.getMovies();
-          });
         }
       },
       controller: 'DashController'

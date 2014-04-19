@@ -98,23 +98,18 @@ body {
 .sectionDiv {
 }
 
-.sectionHeader {
+/* Loading Page */
+
+.loading-icon-item {
   text-align: center;
-  font-weight: 900;
-  font-size: 2em;
-  letter-spacing: .1em;
-  cursor: pointer;
 }
 
-.sectionContainer {
-  padding: 20px;
-  display: none;
-  background: url('../images/grey_wash_wall.png');
+.loading-icon {
+  margin-top: 70px;
+  font-size: 70px;
 }
 
-.sectionContainerProfile {
 
-}
 
 /* login fun */
 
@@ -161,6 +156,7 @@ body {
 .userDetailFont {
   font-family: 'helvetica';
   line-height: 0px;
+  font-size: 12px;
   color: black;
 }
 
