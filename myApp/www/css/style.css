@@ -1,5 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
+@font-face {
+  font-family: 'geared';
+  src: url('geared/GearedSlab-Bold.ttf');
+  src: url('geared/GearedSlab-Extrabold.ttf');
+  src: url('geared/GearedSlab-Light.ttf');
+  src: url('geared/GearedSlab.ttf');
+}
+
 /* Google Fonts
 font-family: 'Inder', sans-serif;
 font-family: 'Viga', sans-serif;
@@ -65,13 +73,13 @@ body {
 }
 
 .appTitle {
-  font-size: 3.5em;
+  font-size: 3em;
   text-align: center;
-  font-family: 'Helvetica';
+  font-family: 'GearedSlab-Extrabold';
 }
 
 .appSubTitle {
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Helvetica';
   text-align: center;
 }
 
