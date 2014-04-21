@@ -28,10 +28,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
     })
-    .state('loading', {
+    .state('login.loading', {
       url: '/loading',
-      templateUrl: 'templates/loading.html',
-      controller: 'LoadingController'
+      views: {
+        'loading' : {
+          templateUrl: 'templates/loading.html',
+          controller: 'LoadingController'
+        }
+      }
     })
     .state('dash', {
       url: '/dash',

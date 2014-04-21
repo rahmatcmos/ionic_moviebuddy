@@ -1,4 +1,4 @@
-app.controller('ProfileController', function($scope, $ionicSideMenuDelegate, $rootScope, updateUsers, getUsers) {
+app.controller('ProfileController', function($scope, $ionicSideMenuDelegate, $rootScope, $state, updateUsers, getUsers) {
 
   $scope.toggleRight = function(){
     $ionicSideMenuDelegate.toggleRight();

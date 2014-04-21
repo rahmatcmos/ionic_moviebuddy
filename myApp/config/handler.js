@@ -194,7 +194,7 @@ exports.authFacebookCallback = function(req, res, next, passport) {
     if (!user) { return res.redirect('/'); }
     req.login(user, function (err) {
       if (err) { return next(err); }
-      return res.redirect('/#/loading');
+      return res.redirect('/#/login/loading');
     });
   })(req, res, next);
 };

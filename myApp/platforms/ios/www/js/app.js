@@ -23,16 +23,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
     })
-    .state('loading', {
+    .state('login.loading', {
       url: '/loading',
-      templateUrl: 'templates/loading.html',
-      controller: 'LoadingController'
+      views: {
+        'loading' : {
+          templateUrl: 'templates/loading.html',
+          controller: 'LoadingController'
+        }
+      }
     })
     .state('dash', {
       url: '/dash',

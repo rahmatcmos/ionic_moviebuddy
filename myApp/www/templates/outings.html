@@ -2,7 +2,7 @@
   <ion-side-menus>
     <ion-side-menu-content>
       <ion-content class='helvetica padding' has-header='true'>
-        <button ng-click='toggleLeft()' class='helvetica button button-outline button-energized button-block'>Create Outing</button>
+        <button ng-click='toggleLeft()' class='helvetica button button-light helveticaButton button-block'>Create Outing</button>
         
           <ion-list option-buttons="outingButtons">
               <div style="text-align: center" ng-repeat="outing in outings" item="outing" can-swipe="true" class='helvetica card'>
@@ -20,7 +20,7 @@
                   </p>
                 </div>
                 <div class='helvetica item'>
-                  <button class='helvetica button button-outline button-energized' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
+                  <button class='helvetica button button-light helveticaButton' ng-click="goTo(outing.movie, outing.showtime)">Buy A Ticket</button>
                 </div>                  
             
               </div>
@@ -30,7 +30,7 @@
     <ion-side-menu side='left'>
       <ion-content>
         <ion-header-bar class='helvetica bar'>
-          <h1 class='helvetica title energized'>New Outing</h1>
+          <h1 class='helvetica title light'>New Outing</h1>
         </ion-header-bar>
         <br><br>
         <form class="outingsForm" ng-submit='processOutingForm()' name='outingForm'>
@@ -52,7 +52,7 @@
               <option value="" disabled selected>Select A Showtime</option>
             </select>
           </label>
-          <button type='submit' class='helvetica button button-full button-positive'>Submit</button>
+          <button type='submit' class='helvetica button button-full button-light'>Submit</button>
         </form>
       </ion-content>
     </ion-side-menu>

@@ -1,24 +1,24 @@
-<ion-header-bar align-title="center" class="bar-positive">
+<ion-header-bar align-title="center" class='bar login-bar'>
 
 </ion-header-bar>
-<ion-content class='login-page has-header padding'>
+<ion-content class='login-page'>
     <div class='card'>
       <div class='item'>
-        <h1 class='appTitle'>MovieBuddy</h1>
+        <h1 class='appTitle'>Movie Buddy</h1>
       </div>
-      <div class='item item-image'>
-        <img src='../img/movieBuddyLogo.png'>
+      <div class='item item-body login-item-image'>
+        <img class='login-image' ng-src='../img/movieBuddyLogo.png'>
       </div>
-      <div class='item login-item'>
+      <div class='item login-item login-button' >
         <a class='loginAnchor' href='http://localhost:8080/auth/facebook'>
-          <button class='login-button button button-large button-positive button-full ion-social-facebook'>
+          <button class='fb-login-button button button-light button-large ion-social-facebook'>
             Connect With Facebook 
           </button>
         </a>
       </div>
+      <div ui-view='loading'></div>
     </div>
    
-    
 </ion-content>
-<ion-footer-bar class="bar-positive">
-</ion-footer-bar>
+<!-- <ion-footer-bar class="bar-positive">
+</ion-footer-bar> -->

@@ -1,5 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
+@font-face {
+  font-family: 'geared';
+  src: url('geared/GearedSlab-Bold.ttf');
+  src: url('geared/GearedSlab-Extrabold.ttf');
+  src: url('geared/GearedSlab-Light.ttf');
+  src: url('geared/GearedSlab.ttf');
+}
+
 /* Google Fonts
 font-family: 'Inder', sans-serif;
 font-family: 'Viga', sans-serif;
@@ -26,17 +34,22 @@ html {
 }
 
 body {
-  font-family: 'Avenir-Black';
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
 
 .helvetica {
+  color: #FFFFFF;
   font-family: 'Helvetica' !important;
   text-transform: capitalize;
 }
 
+.helveticaButton {
+  color: #4a87ee !important;
+  font-weight: bold !important;
+}
+
 .scroll-content {
-  
+  background: #4a87ee;
 }
 
 .list {
@@ -45,10 +58,13 @@ body {
 
 .item {
   border: 0px;
+  background-color: transparent;
 }
 
 .card {
   border: 0px;
+  padding: 5px;
+  background-color: transparent;
 }
 
 .bar {
@@ -65,13 +81,14 @@ body {
 }
 
 .appTitle {
-  font-size: 3.5em;
+  color: #FFFFFF;
+  margin-top: -10px !important;
   text-align: center;
-  font-family: 'Helvetica';
+  font-family: 'GearedSlab-Extrabold', 'Helvetica';
 }
 
 .appSubTitle {
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Helvetica';
   text-align: center;
 }
 
@@ -105,7 +122,6 @@ body {
 }
 
 .loading-icon {
-  margin-top: 70px;
   font-size: 70px;
 }
 
@@ -121,8 +137,19 @@ body {
   padding: 0px;
 }
 
+.login-item-image {
+  padding: 0px !important;
+  margin: 0px !important;
+  text-align: center;
+}
+
+.login-image {
+  margin-top: -15px;
+}
+
 .login-button {
-  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .loginAnchor {
@@ -153,11 +180,21 @@ body {
   text-align: center;
 }
 
+.userDetailItem {
+  background: #f8f8f8;
+  margin: 2px;
+  border-radius: 3px;
+}
+
 .userDetailFont {
+  color: #4a87ee;
   font-family: 'helvetica';
   line-height: 0px;
   font-size: 12px;
-  color: black;
+}
+
+.profileEditInput {
+  background: #FFF;
 }
 
 .editableUserDetail {
@@ -206,7 +243,10 @@ body {
 }
 
 .friend {
-
+  background: #f8f8f8;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 .friendsPhoto {
@@ -216,6 +256,7 @@ body {
 }
 
 .friendName {
+  color: #4a87ee;
   display: inline-block;
   margin-left: 50px;
   padding-top: 15px;
@@ -224,6 +265,7 @@ body {
 }
 
 .friendDetail {
+  color: #4a87ee;
   display: block;
 }
 
@@ -236,7 +278,7 @@ body {
 }
 
 .filter {
-  font-size: .75em !important;
+  font-size: .55em !important;
 }
 
 .filter:hover {
@@ -253,7 +295,8 @@ body {
 }
 
 .movieItem {
-  padding: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .movieThumb {
@@ -266,7 +309,7 @@ body {
   line-height: 20px;
   padding-left: 5px !important;
   font-size: 12px;
-  width: 200px;
+  width: 190px;
   text-align: left;
   float: left;
 }
@@ -352,6 +395,5 @@ body {
 
 /* footer */
 .footer {
-  background: url('../images/grey_wash_wall.png');
-  height: 100px;
+
 }
