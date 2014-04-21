@@ -1,6 +1,6 @@
 <ion-view title="Movies" class='helvetica moviesView'>
   <ion-content has-header="true" >
-    <ion-header-bar class="bar bar-header">
+    <ion-header-bar class="bar bar-header movie-filter-bar">
       <div class="button-bar filters">
         <button class="button button-light helveticaButton filter" ng-click="category = 'audience_score'; reverse = !reverse ">Audience</button>
         <button class="button button-light helveticaButton filter" ng-click="category = 'critics_score'; reverse = !reverse">Critics</button>
@@ -12,6 +12,9 @@
         <div style="text-align: center" ng-repeat="movie in movies | filter:search:strict | orderBy:category:reverse"
                   class="card movieCard" 
                   item="movie">
+
+                  <hr class='movie-hr'>
+            
                   <div class='helvetica item movieItem'>
                     
                     <img class='helvetica movieThumb' src="{{movie.thumbnail}}">
@@ -48,8 +51,7 @@
                     </div>
 
                   </div>
-                  <hr class='movie-hr'>
-     
+  
         </div>
       </ion-list>
   </ion-content>
