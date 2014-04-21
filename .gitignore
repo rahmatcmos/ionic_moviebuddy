@@ -27,6 +27,7 @@ node_modules
 
 #bower
 myApp/www/bower_components
+bower_components
 
 #DS_Store
 .DS_Store
