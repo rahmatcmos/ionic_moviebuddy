@@ -40,6 +40,7 @@ body {
 .helveticaButton {
   color: #1FDA9A !important;
   font-weight: 500;
+  border: 0px !important;
 }
 
 .scroll-content {
@@ -99,6 +100,10 @@ body {
   width: 5px;
 }
 
+.mb-icon-color {
+  color: #1FDA9A !important;
+}
+
 .logoutButton {
 
 }
@@ -147,6 +152,8 @@ body {
 }
 
 .login-image {
+  height: 171px;
+  width: 200px;
   margin-top: -5px;
 }
 
@@ -395,9 +402,13 @@ body {
   color: rgba(68,68,68,1);
 }
 
-.outingItemBody {
+.outing-item-title {
+  padding-top: 0px !important;
+}
+
+.outing-item-body {
   padding-top: 1px;
-  padding-bottom: 0px;
+  padding-bottom: 6px;
 }
 
 .outingField {
@@ -415,6 +426,10 @@ body {
   border-radius: 2px;
 }
 
+.outing-detail-paragraph {
+  margin-top: 2px !important;
+}
+
 .outingDetails {
   width: 150px;
   margin-left: 5px;
@@ -429,6 +444,10 @@ body {
 
 .newOutingHeader {
   margin-top: 9px;
+}
+
+.buy-a-ticket-div {
+  padding-top: 0px;
 }
 
 .buy-a-ticket {

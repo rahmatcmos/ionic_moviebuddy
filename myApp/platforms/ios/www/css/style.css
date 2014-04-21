@@ -40,6 +40,7 @@ body {
 .helveticaButton {
   color: #1FDA9A !important;
   font-weight: 500;
+  border: 0px !important;
 }
 
 .scroll-content {
@@ -285,6 +286,9 @@ body {
 }
 
 .filter {
+  border: 0px !important;
+  margin: 2px !important;
+  border-radius: 2px !important;
   font-size: .65em !important;
 }
 
@@ -392,9 +396,13 @@ body {
   color: rgba(68,68,68,1);
 }
 
-.outingItemBody {
+.outing-item-title {
+  padding-top: 0px !important;
+}
+
+.outing-item-body {
   padding-top: 1px;
-  padding-bottom: 0px;
+  padding-bottom: 6px;
 }
 
 .outingField {
@@ -408,6 +416,12 @@ body {
 .outingMovieThumb {
   height: 260px;
   width: 180px;
+  border: 5px solid #f8f8f8;
+  border-radius: 2px;
+}
+
+.outing-detail-paragraph {
+  margin-top: 2px !important;
 }
 
 .outingDetails {
@@ -424,6 +438,10 @@ body {
 
 .newOutingHeader {
   margin-top: 9px;
+}
+
+.buy-a-ticket-div {
+  padding-top: 0px;
 }
 
 .buy-a-ticket {

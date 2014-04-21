@@ -143,7 +143,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     outing.organizers = {};
     outing.organizers[userId] = { name: userName };
 
-    // sendAlert.email('creationEmail', $scope.currentMovie.title);
+    sendAlert.email('creationEmail', $scope.currentMovie.title);
 
     return outing;
   };
@@ -201,7 +201,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
     })
     .success(function(data) {
       data = data.sort(function(a,b){
-        return a.date - b.date;
+        return new Date(a.date) - new Date(b.date);
       });
       $rootScope.outings = data;
     })
@@ -226,7 +226,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
       data: outing
     })
     .success(function(data) {
-      // sendAlert.email('joinEmail', $scope.currentMovie.title);
+      sendAlert.email('joinEmail', $scope.currentMovie.title);
       $scope.getOutings();
     })
     .error(function(data, status, headers, config) {
@@ -237,7 +237,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
   $scope.getMoviePoster = function(movie) {
     if (!$rootScope.allMovies) {return;}
     return $rootScope.allMovies[movie.toUpperCase()].thumbnail;
-  };  
+  };
 
   $scope.goTo = function(movie, showtime) {
     var sTimes = $rootScope.allMovies[movie.toUpperCase()];
