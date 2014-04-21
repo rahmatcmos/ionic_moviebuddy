@@ -1,5 +1,6 @@
 var db = require('./db_config');
 var FB = require('fb');
+var nodemailer = require('nodemailer');
 
 exports.getUser = function(req, res) {
   db.User.findOne({ facebookId: req.params.facebookId }, function (err, user) {
@@ -19,14 +20,6 @@ exports.postUser = function(req, res) {
     name: body.name,
     email: body.email,
     city: body.location
-    // hometown:        ,
-    // favMovie:        ,
-    // favGenre:        ,
-    // age:             { type: Number },
-    // favTheater:      ,
-    // currentCity:     ,
-    // favActor:        ,
-    // favDirector:
   });
 
   user.save(function (err) {
@@ -145,6 +138,7 @@ exports.postOuting = function(req, res) {
     city: body.city,
     state: body.state,
     zip: body.zip,
+    showtime: body.showtime,
     // invitees: body.invitees,
     attendees: body.attendees,
     organizers: body.organizers
@@ -168,6 +162,7 @@ exports.putOuting = function(req, res) {
     outing.city = body.city;
     outing.state = body.state;
     outing.zip = body.zip;
+    outing.showtime = body.showtime;
     // outing.invitees = body.invitees;
     outing.attendees = body.attendees;
     outing.organizers = body.organizers;
@@ -199,11 +194,69 @@ exports.authFacebookCallback = function(req, res, next, passport) {
     if (!user) { return res.redirect('/'); }
     req.login(user, function (err) {
       if (err) { return next(err); }
-      req.session.username = 'farid';
-      res.cookie(JSON.stringify(user));
-      return res.redirect('http://localhost:8080/#/dash/outings');
+      return res.redirect('/#/login/loading');
     });
   })(req, res, next);
+};
+
+exports.sendAlert = function(req, res) {
+  
+  var userEmail;
+
+  var smtpTransport = nodemailer.createTransport('SMTP', {
+    service: 'Gmail',
+    auth: {
+      user: auth.gmailAuth.user,
+      pass: auth.gmailAuth.pass
+    }
+  });
+
+  db.User.findOne({ facebookId: req.body.userId }, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      userEmail = user.email;
+
+      if (req.body.type === 'creationEmail') {
+        var mailOptions = {
+          from: 'MovieBuddyApp <moviebuddyapp@gmail.com>',
+          to: userEmail,
+          subject: 'New outing created',
+          text: 'You have created a new outing to go see the movie ' + req.body.movie + ', we will keep you updated with any changes.'
+        };
+      }
+
+      if (req.body.type === 'joinEmail') {
+        var mailOptions = {
+          from: 'MovieBuddyApp <moviebuddyapp@gmail.com>',
+          to: userEmail,
+          subject: 'You joined an outing',
+          text: 'You have joined an outing to go see the movie ' + req.body.movie + '!'
+        };
+      }
+
+      if (req.body.type === 'bailEmail') {
+        var mailOptions = {
+          from: 'MovieBuddyApp <moviebuddyapp@gmail.com>',
+          to: userEmail,
+          subject: 'You bailed on an outing',
+          text: 'You have bailed on an outing to go see the movie ' + req.body.movie + ', you quitter.'
+        };
+      }
+
+      smtpTransport.sendMail(mailOptions, function (err, res) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Message sent: ' + res.message);
+        }
+
+        smtpTransport.close();
+      });
+    }
+  });
+
+  res.send();
 };
 
 exports.logout = function(req, res) {

@@ -1,19 +1,19 @@
+
 <!-- Header Bar -->
-<ion-header-bar align-title="center" class="bar-positive">
+<ion-header-bar align-title="center" class='bar-light' >
+  <img class='button button-clear' src='../img/movieBuddyLogo.png'>
   <!-- Title -->
-  <h1 class="title">MovieBuddy</h1>
+  <h1 class="title">Movie Buddy</h1>
   <!-- Logout Button -->
-  <div class="buttons">
-    <button class="button button-clear" ng-click="doSomething()">Logout</button>
-  </div>
+  <a class="button button-clear icon ion-log-out"  ng-href="/logout"></a>
 </ion-header-bar>
 
 <!-- Tabs -->
-<ion-tabs class="tabs-icon-top">
+<ion-tabs class="tabs-icon-top tabs-light">
 
   <!-- Dash Tab -->
-  <ion-tab title="Outings" icon="ion-android-friends" ui-sref="dash.outings">
-    <ion-nav-view name="outings" class="slide-left-right-ios7"></ion-nav-view>
+  <ion-tab title="Outings" icon="ion-calendar" ui-sref="dash.outings">
+    <ion-nav-view name="outings"></ion-nav-view>
   </ion-tab>
 
   <!-- Movies Tab -->

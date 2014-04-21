@@ -5,13 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic','xeditable', 'starter.controllers', 'starter.services' ])
+var app = angular.module('starter', ['ionic','ngAnimate','xeditable', 'starter.controllers', 'starter.services' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      StatusBar.hide();
     }
   });
 });
@@ -23,11 +23,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
+    })
+    .state('login.loading', {
+      url: '/loading',
+      views: {
+        'loading' : {
+          templateUrl: 'templates/loading.html',
+          controller: 'LoadingController'
+        }
+      }
     })
     .state('dash', {
       url: '/dash',
@@ -59,7 +67,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'movies' : {
           templateUrl: 'templates/movies.html',
-          controller: 'MoviesController'
+          controller: 'OutingsController'
         }
       },
       resolve: {
@@ -92,6 +100,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
       },
       resolve: {
         isLoggedIn: function(authentication) {
+          return authentication.auth();
+        }
+      }
+    })
+    .state('/#/dash/outings', {
+      url: '/dash/outings',
+      views: {
+        'outings': {
+          templateUrl: 'templates/outings.html',
+          controller: 'OutingsController'
+        }
+      },
+      resolve: {
+        isLoggedIn: function(authentication){
           return authentication.auth();
         }
       }

@@ -1,8 +1,40 @@
 <ion-view>
-  <ion-content>
-    <ion-list ng-repeat='friend in friends'>
-      <img id="friendPic" src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'></img>
-      <span class='friendName'>{{friend.name}}</span>
-    </ion-list>
+  <ion-content has-header='true'>
+    <div class='list' option-buttons='itemButtons'>
+      <div  class='card friend' ng-click='friendInfoBox = !friendInfoBox'ng-repeat='friend in friends' item='friend' can-swipe='true' >
+        <div class='item item-avatar'>
+          <img src='http://graph.facebook.com/{{friend.facebookId}}/picture?type=large'>
+          <h2 class='helvetica padding friendName'>{{friend.name}}</h2>
+        </div>
+        
+        
+        <div class="helvetica item" ng-show='friendInfoBox'>
+            <span class="helvetica friendDetail">
+              <u>Age:</u>
+              <span>{{friend.age}}</span>
+            </span>
+            <span class="helvetica friendDetail">
+              <u>City:</u>
+              <span>{{friend.city}}</span>
+            </span>
+            <span class="helvetica friendDetail">
+              <u>Favorite Movie:</u>
+              <span>{{friend.favMovie}}</span>
+            </span>
+            <span class="helvetica friendDetail">
+              <u>Favorite Genre:</u>
+             <span>{{friend.favGenre}}</span>
+           </span>
+            <span class="helvetica friendDetail">
+              <u>Favorite Theater:</u>
+              <span>{{friend.favTheater}}</span>
+            </span>
+            <span class="helvetica friendDetail">
+              <u>Favorite Actor:</u>
+              <span>{{friend.favActor}}</span>
+            </span>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

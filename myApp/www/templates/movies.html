@@ -1,39 +1,58 @@
-<ion-view title="Movies">
-  <ion-content class="">
-    <ion-header-bar class="bar bar-header bar-positive">
-      <div class="button-bar">
-        <button class="button " ng-click="category = 'ratings.audience_score'; reverse = !reverse ">Audience Score</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'ratings.critics_score'; reverse = !reverse">Critic's Score</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'title'; reverse = !reverse">Title</button>&nbsp;&nbsp;
-        <button class="button " ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>&nbsp;&nbsp;
-        <!-- <input style="text-align:center" placeholder="search movies" ng-model="searchText"/> -->
-        <hr>
-
+<ion-view title="Movies" class='helvetica moviesView'>
+  <ion-content has-header="true" >
+    <ion-header-bar class="bar bar-header movie-filter-bar">
+      <div class="button-bar filters">
+        <button class="button button-light helveticaButton filter" ng-click="category = 'audience_score'; reverse = !reverse ">Audience</button>
+        <button class="button button-light helveticaButton filter" ng-click="category = 'critics_score'; reverse = !reverse">Critics</button>
+        <button class="button button-light helveticaButton filter" ng-click="category = 'title'; reverse = !reverse">Title</button>
+        <button class="button button-light helveticaButton filter" ng-click="category = 'runtime'; reverse = !reverse">Runtime</button>
       </div>
     </ion-header-bar>
-    <ion-scroll >
+      <ion-list has-header='true' class='helvetica has-header'>
+        <div style="text-align: center" ng-repeat="movie in movies | filter:search:strict | orderBy:category:reverse"
+                  class="card movieCard" 
+                  item="movie">
 
-      <ion-list option-buttons="movieButtons" class="has-headers padding">
-        <ion-item style="text-align: center" ng-repeat="movie in allMovies | filter:search:strict | orderBy:category:reverse" 
-                  class="item-text-wrap" 
-                  item="movie"
-                  item-type="button-postive"
-                  can-swipe="true">
-        <img style=" float:block; margin: 5px;" src="{{movie.posters.profile}}"></img>
-        <br><div >
-          <b>{{movie.title}}</b>
-          <br>
-          <b>Critic Score:</b>{{movie.ratings.critics_score}}
-          <br>
-          <b>Audience Score:</b>{{movie.ratings.audience_score}}
-          <br>
-          <b>Runtime:</b>{{movie.runtime = movie.runtime? movie.runtime: 0}}
-          <br>
-          <b>Synopsis:</b>
-          {{movie.synopsis.slice(0,100)}}...
+                  <hr class='movie-hr'>
+            
+                  <div class='helvetica item movieItem'>
+                    
+                    <img class='helvetica movieThumb' src="{{movie.thumbnail}}">
+                    <div class='helvetica movieInfo'>
+                    <h2 class='helvetica movieTitle'>{{movie.title}}</h2>
+                    <span>Critic Score: {{movie.critics_score}}</span>
+                      <span class='helvetica audienceScore'>
+                      Audience Score: {{movie.audience_score}}
+                      </span>
+                      <span class='helvetica runtime'>Runtime: {{movie.runtime = movie.runtime ? movie.runtime : 0}} min. </span>
+                      <button class='helvetica button button-small button-light helveticaButton item-button-right go-see-it' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
+                      <button class='helvetica button button-small button-energized item-button-right buy-ticket' ng-click="getTicket(movie)">Buy A Ticket</button>
+                    </div>
+                  </div>
+                  <div class='helvetica ' ng-model='form' ng-show='toggleOutingsForm'>
+                    <div class='helvetica item item-divider '>
+                    <h2 class='helvetica title '>Create An Outing</h2>
+                    </div>
+                    <div class='helvetica list'>
+                        <span class='helvetica input-label '>1. Select A Date:</span>
+                        <input class="outingField " ng-model="form.date" name="date" type="date"  ng-change='getTheaters(currentMovie); showTheaters()'>
+
+                      <label class='helvetica item item-input item-stacked-label ' ng-show="theaterField()">
+                       <span class='helvetica input-label '> 2. Select a Theater</span>
+                        <select ng-model="form.theater" name="theater" type="text" placeholder="Theater" class="outingField " ng-options="theater.theatre.name for (name, theater) in theaters" ng-change='getShowtimes(currentMovie, form.theater)'></select>
+                      </label>
+                      <label class='helvetica item item-input item-stacked-label ' ng-show="showtimeField()">
+                        <span class='helvetica input-label '>3. Select a Showtime</span>
+                        <select ng-model="form.showtime" name="theater" type="text" placeholder="Theater" class="outingField " ng-options="showtime for (showtime, showtime) in showtimes"></select>
+                      </label>
+                      <br>
+                      <button type="submit" ng-click='processOutingForm()' class="button button-small button-light helveticaButton ">Create Outing</button>
+                      <button class='helvetica button button-small button-light helveticaButton ' ng-click="cancelNewOuting(); toggleOutingsForm = !toggleOutingsForm;" type="reset">Cancel</button>
+                    </div>
+
+                  </div>
+  
         </div>
-        </ion-item>
       </ion-list>
-    </ion-scroll>
   </ion-content>
 </ion-view>

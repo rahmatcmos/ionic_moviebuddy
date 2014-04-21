@@ -36,7 +36,7 @@ passport.use(new FacebookStrategy({
 },
 function(req, token, refreshToken, profile, done) {
   // asynchronous
-
+  
   handler.queryFBFriends(token, profile);
 
   process.nextTick(function() {

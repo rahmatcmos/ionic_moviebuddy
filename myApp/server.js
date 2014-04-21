@@ -10,7 +10,7 @@ var passport = require('./config/passport').passport;
 
 var isLoggedIn = function(req, res) {
   if (req.isAuthenticated()){
-    res.send('true');
+    res.send(req.session.passport.user);
   } else {
     res.send('false');
   }
@@ -51,6 +51,8 @@ app.get('/auth/facebook/callback',function(req, res, next){
 });
 
 app.get('/auth/isLoggedIn', isLoggedIn);
+
+app.post('/sendalert', handler.sendAlert);
 
 app.get('/logout', handler.logout);
 
