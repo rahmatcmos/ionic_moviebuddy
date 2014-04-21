@@ -23,7 +23,7 @@
                       </span>
                       <span class='helvetica runtime'>Runtime: {{movie.runtime = movie.runtime ? movie.runtime : 0}} min. </span>
                       <button class='helvetica button button-small button-light helveticaButton item-button-right' ng-click="storeCurrent(movie.title); toggleOutingsForm = !toggleOutingsForm;">Go See It!</button>
-                      <button class='helvetica button button-small button-energized item-button-right' ng-click="getTicket(movie)">Buy A Ticket</button>
+                      <button class='helvetica button button-small button-energized item-button-right buyTicket' ng-click="getTicket(movie)">Buy A Ticket</button>
                     </div>
                   </div>
                   <div class='helvetica ' ng-model='form' ng-show='toggleOutingsForm'>
