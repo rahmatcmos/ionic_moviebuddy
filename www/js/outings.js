@@ -204,7 +204,7 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
         return new Date(a.date) - new Date(b.date);
       });
       $rootScope.outings = data;
-      if (!data.length) {
+      if (!Object.keys(data).length) {
         $scope.emptyOutings = true;
       }
     })
