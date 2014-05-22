@@ -3,7 +3,9 @@
     <ion-side-menu-content>
       <ion-content class='helvetica'>
         <button ng-click='toggleLeft()' class='helvetica button button-light button-full helveticaButton'>Create Outing</button>
-        
+          <div ng-if='emptyOutings' style='margin-top: 100px;'>
+            <h2>You haven't created any outings yet!</h2>
+          </div>
           <ion-list option-buttons="outingButtons">
               <div style="text-align: center" ng-repeat="outing in outings" item="outing" can-swipe="true" class='helvetica card outing-card'>
                 <div class='item item-body outing-item-title'>

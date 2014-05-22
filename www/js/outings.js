@@ -1,6 +1,6 @@
 
 app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSideMenuDelegate','sendAlert', function ($scope, $rootScope, $http, $ionicSideMenuDelegate, sendAlert) {
-
+  $scope.emptyOutings = false;
   $scope.toggleOutingsForm = false;
 
   $scope.outingButtons = [
@@ -204,6 +204,9 @@ app.controller('OutingsController', ['$scope', '$rootScope', '$http', '$ionicSid
         return new Date(a.date) - new Date(b.date);
       });
       $rootScope.outings = data;
+      if (!data.length) {
+        $scope.emptyOutings = true;
+      }
     })
     .error(function(data, status, headers, config) {
       console.log('GET Error:', data, status, headers, config);
