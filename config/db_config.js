@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var mongoURL = process.env.MONGOHQ_URI || 'mongodb://:@127.0.0.1:/moviebuddy';
+var mongoURL = process.env.MONGOHQ_URL || 'mongodb://:@127.0.0.1:/moviebuddy';
 
 mongoose.connect(mongoURL);
 
