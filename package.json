@@ -6,7 +6,8 @@
     "mongoose": "~3.8.8",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.3",
-    "fb": "^0.7.0"
+    "fb": "^0.7.0",
+    "nodemailer": "^0.6.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
