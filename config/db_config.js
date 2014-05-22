@@ -1,12 +1,8 @@
 var mongoose = require('mongoose');
 
-var user = process.env.DBUSER || '';
-var pword = process.env.DBPASSWORD || '';
-var domain = process.env.DBDOMAIN || '127.0.0.1';
-var port = process.env.DBPORT || '';
-var database = process.env.DBDATABASE || 'moviebuddy';
+var mongoURL = process.env.MONGOHQ_URL || 'mongodb://:@127.0.0.1:/moviebuddy';
 
-mongoose.connect('mongodb://' + user + ':' + pword + '@' + domain + ':' + port + '/' + database);
+mongoose.connect(mongoURL);
 
 var db = mongoose.connection;
 
