@@ -145,17 +145,25 @@ app.service('getLocation', function($http, $rootScope, $q){
 
     var deferred = $q.defer();
 
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var lat = position.coords.latitude;
-      var lon = position.coords.longitude;
-      var zipQuery = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lon+'&sensor=true';
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        var zipQuery = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lon+'&sensor=true';
 
-      $http.get(zipQuery)
-      .success(function(data){
-        $rootScope.currentZip = data.results[0].address_components[7].short_name || 94102;
-        deferred.resolve($rootScope.currentZip);
+        $http.get(zipQuery)
+        .success(function(data){
+          $rootScope.currentZip = data.results[0].address_components[7].short_name || 94102;
+          deferred.resolve($rootScope.currentZip);
+        })
+        .error(function(err){
+          $rootScope.currentZip = 94102;
+        });
       });
-    });
+    } else {
+      $rootScope.currentZip = 94102;
+    }
+    
 
     return deferred.promise;
   };
